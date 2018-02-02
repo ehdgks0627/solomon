@@ -23,8 +23,6 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(user.is_active, is_active)
         self.assertEqual(user.is_staff, False)
 
-        user.delete()
-
     def test_create_super_user(self):
         id = random_string()
         email = random_string() + "@" + random_string(only_lower=True) + ".com"
@@ -43,8 +41,6 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(super_user.phone, phone)
         self.assertEqual(super_user.is_active, is_active)
         self.assertEqual(super_user.is_staff, True)
-
-        super_user.delete()
 
 
 class QuestionViewTests(TestCase):

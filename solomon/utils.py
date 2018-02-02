@@ -16,5 +16,9 @@ def random_bool():
     return random.choice([False, True])
 
 
-def random_int():
-    return random.randint(0, 0xFFFFFFFF)
+def random_int(min=0, max=0xFFFFFFFF):
+    return random.randint(min, max)
+
+
+def random_choice(base):
+    return random.choice(base)

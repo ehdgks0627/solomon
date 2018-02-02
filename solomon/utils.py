@@ -1,6 +1,6 @@
 import random
 import string
-    
+
 
 def random_string(length=8, only_digit=False, only_lower=False):
     if only_digit:
@@ -13,5 +13,8 @@ def random_string(length=8, only_digit=False, only_lower=False):
 
 
 def random_bool():
-    import random
     return random.choice([False, True])
+
+
+def random_int():
+    return random.randint(0, 4294967295)

@@ -44,22 +44,26 @@ class Account(AbstractBaseUser, PermissionsMixin):
         null=False,
         blank=False
     )
+
     email = models.EmailField(
         verbose_name='email',
         max_length=255,
         unique=True,
     )
+
     nickname = models.CharField(
         'nickname',
         max_length=10,
         blank=False,
         unique=True,
         default='')
+
     thumbnail = models.ImageField(
         null=True,
         blank=True,
         upload_to='image/thumbnail/',
     )
+
     phone = models.CharField(
         verbose_name='phone',
         max_length=16,
@@ -67,6 +71,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         null=False,
         blank=False
     )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

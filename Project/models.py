@@ -1,10 +1,14 @@
 from django.db import models
+from User.models import Account
 
 
 class Project(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
+    owner = models.ForeignKey(
+        Account,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False
+    )
     title = models.CharField(
         max_length=128,
         blank=False,
@@ -27,4 +31,7 @@ class Project(models.Model):
         null=False
     )
 
-    REQUIRED_FIELDS = ['title', 'description', 'price', 'period']
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    REQUIRED_FIELDS = ['owner', 'title', 'description', 'price', 'period']

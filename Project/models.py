@@ -9,6 +9,7 @@ class Project(models.Model):
         blank=False,
         null=False
     )
+
     title = models.CharField(
         max_length=128,
         blank=False,

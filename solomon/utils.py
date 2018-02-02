@@ -17,4 +17,4 @@ def random_bool():
 
 
 def random_int():
-    return random.randint(0, 4294967295)
+    return random.randint(0, 0xFFFFFFFF)

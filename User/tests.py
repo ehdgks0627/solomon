@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Account, AccountManager
+from .models import Account
 from solomon.utils import *
 
 

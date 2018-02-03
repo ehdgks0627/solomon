@@ -7,16 +7,16 @@ from Review.models import Review
 
 
 class Order(models.Model):
-    STATE_CHOICE = (
-        (1, '결제 대기'),
-        (2, '진행 대기'),
-        (3, '진행 중'),
-        (4, '검수 중'),
-        (5, '검수 완료'),
-        (6, '완료'),
-        (7, '취소 요청'),
-        (8, '취소'),
-    )
+    STATE_CHOICE = {
+        '결제 대기': 10,
+        '진행 대기': 20,
+        '진행 중': 21,
+        '검수 중': 30,
+        '검수 완료': 31,
+        '완료': 40,
+        '취소 요청': 100,
+        '취소': 101,
+    }
 
     # TODO 추가하기
     PAYMENT_CHOICE = (
@@ -27,14 +27,8 @@ class Order(models.Model):
         Account,
         on_delete=models.CASCADE,
         blank=False,
-        null=False
-    )
-
-    seller = models.ForeignKey(
-        Account,
-        on_delete=models.CASCADE,
-        blank=False,
-        null=False
+        null=False,
+        related_name='owner'
     )
 
     product = models.ForeignKey(
@@ -97,5 +91,12 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    REQUIRED_FIELDS = ['owner', 'seller', 'product', 'project', 'contract', 'review', 'state', 'payment_method',
+    REQUIRED_FIELDS = ['owner', 'product', 'project', 'contract', 'review', 'state', 'payment_method',
                        'price', 'period', 'tags']
+
+    def change_state(self, state):
+        if state not in self.STATE_CHOICE:
+            return False
+        self.state = self.STATE_CHOICE[state]
+        self.save()
+        return True

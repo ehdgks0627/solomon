@@ -8,8 +8,9 @@ class QuestionMethodTests(TestCase):
     def setUp(self):
         self.user = Account.objects.create_account(
             id=random_string(), password="test", email="a@a.com", nickname="test", phone="010-0101-0101")
+        self.user.save()
 
-    def test_create_project(self):
+    def test_create_product(self):
         title = random_string()
         content = random_string()
         category = random_choice(Category.get_all_category_code(Category))

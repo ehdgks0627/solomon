@@ -8,6 +8,7 @@ class QuestionMethodTests(TestCase):
     def setUp(self):
         self.user = Account.objects.create_account(
             id=random_string(), password="test", email="a@a.com", nickname="test", phone="010-0101-0101")
+        self.user.save()
 
     def test_create_project(self):
         title = random_string()

@@ -97,6 +97,8 @@ class Order(models.Model):
     def change_state(self, state):
         if state not in self.STATE_CHOICE:
             return False
+        if self.state > self.STATE_CHOICE[state]:
+            return False
         self.state = self.STATE_CHOICE[state]
         self.save()
         return True

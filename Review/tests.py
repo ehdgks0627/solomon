@@ -7,7 +7,7 @@ from solomon.utils import *
 
 class QuestionMethodTests(TestCase):
     def setUp(self):
-        self.user = Account.objects.create_account(
+        self.user = Account.objects.create_user(
             id=random_string(), password="test", email="a@a.com", nickname="test", phone="010-0101-0101")
         self.product = Product(
             owner=self.user, title="test_title", content="test_content", one_line_introduce="test_one_line_introduce",

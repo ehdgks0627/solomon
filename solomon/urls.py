@@ -19,11 +19,13 @@ from .views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^Contact/', include('Contact.urls')),
-    url(r'^Contract/', include('Contract.urls')),
-    url(r'^Product/', include('Product.urls')),
-    url(r'^Project/', include('Project.urls')),
-    url(r'^Review/', include('Review.urls')),
-    url(r'^User/', include('User.urls')),
+    url(r'^contact/', include('Contact.urls')),
+    url(r'^contract/', include('Contract.urls')),
+    url(r'^order/', include('Order.urls')),
+    url(r'^product/', include('Product.urls')),
+    url(r'^project/', include('Project.urls')),
+    url(r'^review/', include('Review.urls')),
+    url(r'^user/', include('User.urls')),
     url(r'^$', main),
+    url('^account/', include('django.contrib.auth.urls')),
 ]

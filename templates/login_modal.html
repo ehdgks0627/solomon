@@ -1,15 +1,15 @@
 <div class="modal hide fade" id="login-modal" role="dialog" aria-labelledby="login=" aria-hidden="true" style="display: none;" tabindex="-1">
     <div class="modal-dialog" style="pointer-events: auto;">
-        <div class="loginmodal-container">
-            <h1>Login to Your Account</h1><br>
+        <div class="modal-container">
+            <h1>Login</h1><br>
           <form action="/user/login/" method="POST">{% csrf_token %}
             <input type="text" name="uid" placeholder="Username">
             <input type="password" name="upw" placeholder="Password">
-            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+            <input type="submit" name="login" class="modal-submit" value="Login">
           </form>
 
-          <div class="login-help">
-            <a href="#">Register</a> - <a href="#">Forgot Password</a>
+          <div class="modal-help">
+            <a href="#">Forgot Password</a>
           </div>
         </div>
     </div>

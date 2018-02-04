@@ -1,0 +1,16 @@
+<div class="modal hide fade" id="register-modal" role="dialog" aria-labelledby="register=" aria-hidden="true"
+     style="display: none;" tabindex="-1">
+    <div class="modal-dialog" style="pointer-events: auto;">
+        <div class="modal-container">
+            <h1>Register</h1><br>
+            <form action="/user/register/" method="POST">{% csrf_token %}
+                <input type="text" name="uid" placeholder="Username">
+                <input type="password" name="upw" placeholder="Password">
+                <input type="email" name="uemail" placeholder="Email">
+                <input type="text" name="unickname" placeholder="Nickname">
+                <input type="tel" name="uphone" placeholder="Phone">
+                <input type="submit" name="register" class="modal-submit" value="Register">
+            </form>
+        </div>
+    </div>
+</div>

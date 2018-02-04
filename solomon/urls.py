@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^review/', include('Review.urls')),
     url(r'^user/', include('User.urls')),
     url(r'^$', main),
-    url('^account/', include('django.contrib.auth.urls')),
 ]

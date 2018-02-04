@@ -1,0 +1,31 @@
+{% block sub_menu%}
+  <style type="text/css">
+    .horizontal_ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .horizontal_li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      float: left;
+    }
+  </style>
+
+  <div class="bg-white fixed-top" style="margin-top: 55px;">
+    <div class="container navbar-expand-lg">
+      <ul class="horizontal_ul">
+        <li class="horizontal_li">
+          <a class="nav-link" href="#" style="color: black;">소프트웨어 개발</a>
+        </li>
+        <li class="horizontal_li">
+          <a class="nav-link" href="#" style="color: black;">디자인</a>
+        </li>
+      </ul>
+      <div style="width: 100%;">
+        <a class="nav-link" href="#" style="float: right; color: black;">프로젝트 등록</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

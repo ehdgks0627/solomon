@@ -11,7 +11,7 @@ class QuestionMethodTests(TestCase):
         phone = random_string(only_digit=True)
         password = Account.objects.make_random_password()
         is_active = random_bool()
-        user = Account.objects.create_account(
+        user = Account.objects.create_user(
             id=id, email=email, nickname=nickname, phone=phone, password=password)
 
         self.assertNotEqual(user, None)

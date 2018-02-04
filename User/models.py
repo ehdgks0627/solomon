@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 
 class AccountManager(BaseUserManager):
     # TODO add tuhmbnail field
-    def create_account(self, id, password, email, nickname, phone):
+    def create_user(self, id, password, email, nickname, phone):
         if not email:
             raise ValueError('Users must have an email address')
 

@@ -44,5 +44,3 @@ class Review(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    REQUIRED_FIELDS = ['owner', 'title', 'content', 'star']

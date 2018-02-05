@@ -35,5 +35,3 @@ class Contact(models.Model):
     file = models.FileField(
         upload_to='file/contact/'
     )
-
-    REQUIRED_FIELDS = ['title', 'content']

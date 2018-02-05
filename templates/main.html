@@ -1,114 +1,110 @@
-{% extends 'base.html' %} {% block content %}
-<!-- Page Content -->
-<div class="container" style="margin-top: 60px;">
-  <!-- Page Features -->
-  <!-- Product Area -->
+{% extends 'base.html' %}
+{% block content %}
+<!-- Page Features -->
+<!-- Product Area -->
 
-  <h2 class="text-center">Best Product</h2><br>
+<h2 class="text-center">Best Product</h2><br>
 
-  <div class="row text-center">
-    {% for product in products %}
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card">
-        <img class="card-img-top" src="{{product.thumbnail}}" alt="">
-        <div class="card-body">
-          <h4 class="card-title">{{product.title}}</h4>
-          <p class="card-text">{{product.description}}</p>
-          <p style="text-align: right;">${{product.price}}</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" style="color: black;">
-                    <img src="{{project.owner.thumbnail}}" width="30px" height="30px" alt=""> {{product.owner.nickname}}
-                  </a>
-        </div>
+<div class="row text-center">
+  {% for product in products %}
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="{{product.thumbnail}}" alt="">
+      <div class="card-body">
+        <h4 class="card-title">{{product.title}}</h4>
+        <p class="card-text">{{product.description}}</p>
+        <p style="text-align: right;">${{product.price}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" style="color: black;">
+                  <img src="{{project.owner.thumbnail}}" width="30px" height="30px" alt=""> {{product.owner.nickname}}
+                </a>
       </div>
     </div>
-    {% endfor %}
   </div>
-  <!-- /.product row -->
-
-  <!-- Guide Area -->
-
-  <h2 class="text-center">처음이신가요?</h2><br>
-
-  <div class="row text-center">
-    <div class="col-md-6 mb-4">
-      <a href="#" style="color: black;">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">구매 회원</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-
-
-    <div class="col-md-6 mb-4">
-      <a href="#" style="color: black;">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">판매 회원</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- /.guide -->
-
-
-  <!-- Project Area -->
-  <h2 class="text-center">Recent Project</h2><br>
-
-  <div class="row text-center">
-    {% for project in projects %}
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card">
-        <img class="card-img-top" src="{{project.thumbnail}}" alt="">
-        <div class="card-body">
-          <h4 class="card-title">{{project.title}}</h4>
-          <p class="card-text">{{project.description}}</p>
-          <p style="text-align: right;">{{project.period}} days</p>
-          <p style="text-align: right;">${{project.price}}</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">I`ll do it</a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  <!-- /.project row -->
-
-  <hr>
-
-  <div class="row text-center">
-    <div class="col-md-6 mb-4">
-      <a href="#" style="color: black;">
-        <div class="card">
-          <div class="card-body">
-            <img src="/static/img/help.png" width="100px" height="100px"></img>
-              <h4 class="card-title">고객센터</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-
-
-    <div class="col-md-6 mb-4">
-      <a href="#" style="color: black;">
-        <div class="card">
-          <div class="card-body">
-            <img src="/static/img/siren.png" width="100px" height="100px"></img>
-              <h4 class="card-title">신고하기</h4>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- /.guide -->
-
+  {% endfor %}
 </div>
-<!-- /.container -->
+<!-- /.product row -->
+
+<!-- Guide Area -->
+
+<h2 class="text-center">처음이신가요?</h2><br>
+
+<div class="row text-center">
+  <div class="col-md-6 mb-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">구매 회원</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="col-md-6 mb-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">판매 회원</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- /.guide -->
+
+
+<!-- Project Area -->
+<h2 class="text-center">Recent Project</h2><br>
+
+<div class="row text-center">
+  {% for project in projects %}
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="{{project.thumbnail}}" alt="">
+      <div class="card-body">
+        <h4 class="card-title">{{project.title}}</h4>
+        <p class="card-text">{{project.description}}</p>
+        <p style="text-align: right;">{{project.period}} days</p>
+        <p style="text-align: right;">${{project.price}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">I`ll do it</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!-- /.project row -->
+
+<hr>
+
+<div class="row text-center">
+  <div class="col-md-6 mb-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <img src="/static/img/help.png" width="100px" height="100px"></img>
+            <h4 class="card-title">고객센터</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="col-md-6 mb-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <img src="/static/img/siren.png" width="100px" height="100px"></img>
+            <h4 class="card-title">신고하기</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- /.guide -->
 {% endblock %}

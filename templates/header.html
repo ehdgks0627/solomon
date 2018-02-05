@@ -3,12 +3,15 @@
 {% include 'login_modal.html' %}
 {% include 'register_modal.html' %}
 
-<header class="fixed-top">
-  <div class="navbar navbar-dark bg-dark">
+<nav class="fixed-top">
+  <div class="navbar navbar-dark navbar-expand-md bg-primary">
     <div class="container">
       <a class="navbar-brand" href="#">Solomon</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbars-top" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <div class="navbar-expand-lg" style="position: right;">
+      <div id="navbars-top" class="navbar-collapse collapse" style="position: right;">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="#">QnA</a>
@@ -26,12 +29,13 @@
             </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="#" ><img src="/static/img/user.svg" style="width: 25px; height: 25px;"></a>
+            <a class="nav-link" href="#" ><img src="/static/img/user.svg" style="width: 1.7rem; height: auto;"></a>
           </li>
         </ul>
       </div>
     </div>
   </div>
-</header>
+  {% include 'sub_menu.html' %}
+</nav>
 
 {% endblock %}

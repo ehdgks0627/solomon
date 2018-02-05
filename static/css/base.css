@@ -6,6 +6,8 @@ body {
 
 .sub-navbar {
   max-height: 2.5rem;
+  background-color: #d8e9e8;
+  box-shadow: 1px 2px 1px #d3d3d3;
 }
 
 .nav-link {

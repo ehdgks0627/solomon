@@ -2,8 +2,8 @@ from django.db import models
 from User.models import Account
 from Product.models import Product
 from Project.models import Project
-from Contract.models import Contract
 from Review.models import Review
+import datetime
 
 
 class Order(models.Model):
@@ -45,11 +45,10 @@ class Order(models.Model):
         null=True
     )
 
-    contract = models.ForeignKey(
-        Contract,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True
+    title = models.CharField(
+        max_length=256,
+        blank=False,
+        null=False
     )
 
     review = models.ForeignKey(
@@ -88,11 +87,14 @@ class Order(models.Model):
         default='[]'
     )
 
+    begin_at = models.DateTimeField(
+        blank=True,
+        null=True,
+        default=None
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    REQUIRED_FIELDS = ['owner', 'product', 'project', 'contract', 'review', 'state', 'payment_method',
-                       'price', 'period', 'tags']
 
     def change_state(self, state):
         if state not in self.STATE_CHOICE:
@@ -100,5 +102,8 @@ class Order(models.Model):
         if self.state > self.STATE_CHOICE[state]:
             return False
         self.state = self.STATE_CHOICE[state]
+
+        if self.state == self.STATE_CHOICE['진행 중']:
+            self.begin_at = datetime.datetime.now()
         self.save()
         return True

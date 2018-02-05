@@ -113,6 +113,3 @@ class Product(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    REQUIRED_FIELDS = ['owner', 'title', 'content', 'category', 'one_line_introduce', 'as_rule', 'refund_rule',
-                       'period_sensitivity']

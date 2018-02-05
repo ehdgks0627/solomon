@@ -28,6 +28,7 @@ class QuestionMethodTests(TestCase):
         owner = self.user
         product = self.product
         project = self.project
+        title = random_string()
         state = Order.STATE_CHOICE[random_choice(base=list(Order.STATE_CHOICE.keys()))]
         payment_method = 1  # TODO 결제 방법
         price = random_int(min=50000, max=5000000)
@@ -36,7 +37,8 @@ class QuestionMethodTests(TestCase):
         for _ in range(5):
             tags.append(random_string())
 
-        order = Order(owner=owner, product=product, project=project, state=state, payment_method=payment_method,
+        order = Order(owner=owner, product=product, project=project, title=title, state=state,
+                      payment_method=payment_method,
                       price=price, period=period, tags=json.dumps(tags))
         order.save()
         self.order = order
@@ -45,6 +47,7 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(order.owner, self.user)
         self.assertEqual(order.product, product)
         self.assertEqual(order.project, project)
+        self.assertEqual(order.title, title)
         self.assertEqual(order.state, state)
         self.assertEqual(order.payment_method, payment_method)
         self.assertEqual(order.price, price)

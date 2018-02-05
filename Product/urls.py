@@ -3,5 +3,5 @@ from django.contrib import admin
 from .views import *
 
 urlpatterns = [
-
+    url(r'get-categories/$', get_categories),
 ]

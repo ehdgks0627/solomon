@@ -8,6 +8,10 @@ body {
   max-height: 2.5rem;
 }
 
+.nav-link {
+  padding-right: 0.5rem !important;
+}
+
 .sub-navbar .navbar-toggler-icon {
   width: 1em;
   height: 1em;

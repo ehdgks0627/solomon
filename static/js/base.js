@@ -2,7 +2,7 @@ $(function () {$.ajax({
     url: '/product/get-categories/',
     dataType: 'json',
     type: 'GET',
-    success: function( data, textStatus, jQxhr ){
+    success: function( data, status, xhr ){
         var count = 1;
         $.each(data, function (key, element) {
             var li = $('<li>', {'class': 'nav-item dropdown'});
@@ -18,7 +18,7 @@ $(function () {$.ajax({
             count++;
         });
     },
-    error: function( jqXhr, textStatus, errorThrown ){
-        console.log( errorThrown );
+    error: function( xhr, status, error ){
+        console.log( error );
     }
 })});

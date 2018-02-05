@@ -10,7 +10,6 @@ $(function () {$.ajax({
                                 'aria-haspopup': 'true', 'aria-expanded': 'true', 'style': 'color: #383d41;', 'text': key}));
             var div = $('<div>', {'class': 'dropdown-menu', 'aria-labelledby': 'category' + count})
             $.each(element, function (key, element) {
-                //TODO element, 네임 설정
                 div.append($('<a>', {'class': 'dropdown-item', 'href': '#', 'text': element[1]}));
             });
             li.append(div);

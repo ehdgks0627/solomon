@@ -10,11 +10,11 @@ import json
 class QuestionMethodTests(TestCase):
     def setUp(self):
         self.user = Account.objects.create_user(
-            id=random_string(), password='test', email='a@a.com', nickname='test', phone='010-0101-0101')
+            id=random_string(), password='test', name='Kim', email='a@a.com', nickname='test', phone='010-0101-0101')
         self.user.save()
 
         self.user2 = Account.objects.create_user(
-            id=random_string(), password='test2', email='a@b.com', nickname='test2', phone='010-0101-0102')
+            id=random_string(), password='test2', name='Hong', email='a@b.com', nickname='test2', phone='010-0101-0102')
         self.user2.save()
 
         self.product = Product(

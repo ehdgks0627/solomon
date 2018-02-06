@@ -14,11 +14,9 @@ def detail_contract(request, contract_id):
 @require_http_methods(['GET'])
 def edit_contract(request, contract_id):
     # TODO is request.user has permission?
-    order_id = request.GET.get("order_id")
-    order = Order.objects.filter(id=order_id)
-    contract = Contract.objects.filter(order=order)
+    contract = Contract.objects.filter(id=contract_id)
     if request.method == 'GET':
-        return render('contract/edit.html', {'contract': contract})
+        return render(request, 'contract/edit.html', {'contract': contract})
     elif request.method == 'POST':
         # TODO
         raise NotImplementedError

@@ -6,7 +6,7 @@ urlpatterns = [
     path(r'<int:category>/', get_product),
     path(r'add/', add_product),
     path(r'categories/', get_categories),
-    path(r'delete/<int:id>/', delete_product),
-    path(r'detail/<int:id>/', detail_product),
-    path(r'edit/<int:id>/', edit_product),
+    path(r'delete/<int:product_id>/', delete_product),
+    path(r'detail/<int:product_id>/', detail_product),
+    path(r'edit/<int:product_id>/', edit_product),
 ]

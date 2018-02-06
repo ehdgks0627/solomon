@@ -4,9 +4,9 @@ from django.views.decorators.http import require_http_methods
 from .models import Project
 
 @require_http_methods(['GET'])
-def add_project(request):
+def create_project(request):
     #TODO
-    return render(request, 'project/add.html')
+    return render(request, 'project/create.html')
 
 @require_http_methods(['GET'])
 def delete_project(request):

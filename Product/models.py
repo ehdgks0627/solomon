@@ -105,11 +105,5 @@ class Product(models.Model):
         null=False,
     )
 
-    # TODO [check] 이거 중요한가..?
-    period_sensitivity = models.IntegerField(
-        blank=False,
-        null=False
-    )
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

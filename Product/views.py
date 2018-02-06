@@ -53,7 +53,7 @@ def edit_product(request):
     order = Order.objects.filter(id=order_id)
     contract = Contract.objects.filter(order=order)
     if request.method == 'GET':
-        return render('product/edit.html', data={'contract': contract})
+        return render('product/edit.html', {'contract': contract})
     elif request.method == 'POST':
         # TODO
         raise NotImplementedError

@@ -7,7 +7,7 @@
 
 <div class="row text-center">
   {% for product in products %}
-  <div class="col-lg-3 col-md-6 mb-4">
+  <div class="col-lg-3 col-md-6 col-xs-12 mb-4">
     <div class="card">
       <img class="card-img-top" src="{{product.thumbnail}}" alt="">
       <div class="card-body">
@@ -31,7 +31,7 @@
 <h2 class="text-center">처음이신가요?</h2><br>
 
 <div class="row text-center">
-  <div class="col-md-6 mb-4">
+  <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
@@ -42,7 +42,7 @@
   </div>
 
 
-  <div class="col-md-6 mb-4">
+  <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
@@ -61,7 +61,7 @@
 
 <div class="row text-center">
   {% for project in projects %}
-  <div class="col-lg-3 col-md-6 mb-4">
+  <div class="col-lg-3 col-md-6 col-xs-12 mb-4">
     <div class="card">
       <img class="card-img-top" src="{{project.thumbnail}}" alt="">
       <div class="card-body">
@@ -82,7 +82,7 @@
 <hr>
 
 <div class="row text-center">
-  <div class="col-md-6 mb-4">
+  <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
@@ -94,7 +94,7 @@
   </div>
 
 
-  <div class="col-md-6 mb-4">
+  <div class="col-lg-6 col-md-6 col-xs-12 mb-4">
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
@@ -105,6 +105,8 @@
     </a>
   </div>
 </div>
-
 <!-- /.guide -->
+
+{% include 'debug.html' %}
+
 {% endblock %}

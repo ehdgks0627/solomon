@@ -4,10 +4,11 @@ import json
 
 
 class Contract(models.Model):
-    def __init__(self, clause, *args, **kwargs):
+    def __init__(self, clause=None, *args, **kwargs):
         super(Contract, self).__init__(*args, **kwargs)
-        self.clause = clause
-        self.save()
+        if clause:
+            self.clause = clause
+            self.save()
 
     order = models.ForeignKey(
         Order,

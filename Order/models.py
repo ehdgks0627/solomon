@@ -8,10 +8,11 @@ import json
 
 
 class Order(models.Model):
-    def __init__(self, tags, *args, **kwargs):
+    def __init__(self, tags=None, *args, **kwargs):
         super(Order, self).__init__(*args, **kwargs)
-        self.tags = tags
-        self.save()
+        if tags:
+            self.tags = tags
+            #self.save()
 
     STATE_CHOICE = {
         '계약서 작업': 10,
@@ -68,7 +69,7 @@ class Order(models.Model):
     state = models.IntegerField(
         blank=False,
         null=False,
-        default=1  # 결제 대기
+        default=STATE_CHOICE['계약서 작업']  # 결제 대기
     )
 
     # 판매자에게 보여주지 않기

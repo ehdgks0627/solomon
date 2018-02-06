@@ -51,12 +51,18 @@ class Account(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
 
+    name = models.CharField(
+        max_length=10,
+        blank=False,
+        unique=False
+    )
+
     nickname = models.CharField(
-        'nickname',
         max_length=10,
         blank=False,
         unique=True,
-        default='')
+        default=''
+    )
 
     thumbnail = models.ImageField(
         null=True,

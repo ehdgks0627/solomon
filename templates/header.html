@@ -15,6 +15,12 @@
               <a class="nav-link" href="#">QnA</a>
             </li>
           {% if user.is_active %}
+            {{ requset }}
+            {% if request.user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/">Admin</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="/user/logout/">Logout</a>
             </li>

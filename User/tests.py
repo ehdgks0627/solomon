@@ -6,7 +6,7 @@ from solomon.utils import *
 class QuestionMethodTests(TestCase):
     def test_create_user(self):
         id = random_string()
-        email = random_string() + "@" + random_string(only_lower=True) + ".com"
+        email = random_string() + '@' + random_string(only_lower=True) + '.com'
         nickname = random_string()
         phone = random_string(only_digit=True)
         password = Account.objects.make_random_password()
@@ -25,7 +25,7 @@ class QuestionMethodTests(TestCase):
 
     def test_create_super_user(self):
         id = random_string()
-        email = random_string() + "@" + random_string(only_lower=True) + ".com"
+        email = random_string() + '@' + random_string(only_lower=True) + '.com'
         nickname = random_string()
         phone = random_string(only_digit=True)
         password = Account.objects.make_random_password()

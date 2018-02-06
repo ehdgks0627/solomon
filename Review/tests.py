@@ -8,11 +8,11 @@ from solomon.utils import *
 class QuestionMethodTests(TestCase):
     def setUp(self):
         self.user = Account.objects.create_user(
-            id=random_string(), password="test", email="a@a.com", nickname="test", phone="010-0101-0101")
+            id=random_string(), password='test', email='a@a.com', nickname='test', phone='010-0101-0101')
         self.product = Product(
-            owner=self.user, title="test_title", content="test_content", one_line_introduce="test_one_line_introduce",
+            owner=self.user, title='test_title', content='test_content', one_line_introduce='test_one_line_introduce',
             category=random_choice(Category.get_all_category_code(Category)),
-            as_rule="test_as_rule", refund_rule="test_refund_rule", period_sensitivity=random_int(min=0, max=10))
+            as_rule='test_as_rule', refund_rule='test_refund_rule', period_sensitivity=random_int(min=0, max=10))
         self.user.save()
         self.product.save()
 

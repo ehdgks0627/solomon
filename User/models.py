@@ -6,13 +6,14 @@ from django.contrib.auth.models import (
 
 class AccountManager(BaseUserManager):
     # TODO add tuhmbnail field
-    def create_user(self, id, password, email, nickname, phone):
+    def create_user(self, id, password, email, name, nickname, phone):
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             id=id,
             email=AccountManager.normalize_email(email),
+            name=name,
             nickname=nickname,
             phone=phone,
         )
@@ -21,11 +22,12 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, id, password, email, nickname, phone):
+    def create_superuser(self, id, password, email, name, nickname, phone):
         user = self.create_user(
             id=id,
             password=password,
             email=email,
+            name=name,
             nickname=nickname,
             phone=phone
         )
@@ -52,19 +54,22 @@ class Account(AbstractBaseUser, PermissionsMixin):
     )
 
     name = models.CharField(
-        max_length=10,
+        verbose_name='name',
+        max_length=32,
         blank=False,
         unique=False
     )
 
     nickname = models.CharField(
-        max_length=10,
+        verbose_name='nickname',
+        max_length=16,
         blank=False,
         unique=True,
         default=''
     )
 
     thumbnail = models.ImageField(
+        verbose_name='thumbnail',
         null=True,
         blank=True,
         upload_to='image/thumbnail/',
@@ -86,7 +91,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     objects = AccountManager()
 
     USERNAME_FIELD = 'id'
-    REQUIRED_FIELDS = ['nickname', 'email', 'phone']
+    REQUIRED_FIELDS = ['name', 'nickname', 'email', 'phone']
 
     @property
     def is_staff(self):

@@ -1,15 +1,37 @@
 from django.shortcuts import render, redirect
 from django.http.response import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+from Contract.models import Contract
+from Order.models import Order
 from .models import Category, Product
 
-@require_http_methods(['GET'])
-def add_product(request):
-    #TODO
-    return render(request, 'product/add.html')
 
+@login_required(login_url='/')
+@require_http_methods(['GET', 'POST'])
+def create_product(request):
+    if request.method == 'GET':
+        return render(request, 'product/create.html')
+    elif request.method == 'POST':
+        # TODO img field
+        product = Product(owner=request.user,
+                          title=request.POST.get("title"),
+                          category=request.POST.get("category"),
+                          img=request.FILE.get("img"),
+                          content=request.POST.get("content"),
+                          one_line_introduce=request.POST.get("one_line_introduce"),
+                          as_rule=request.POST.get("as_rule"),
+                          refund_rule=request.POST.get("refund_rule"))
+        product.save()
+        return redirect('/product/get/{}'.format(product.id))
+    else:
+        return None  # ERROR
+
+
+@login_required(login_url='/')
 @require_http_methods(['GET'])
 def delete_product(request, product_id):
+    #TODO is request.user has permission?
     Product.objects.filter(id=product_id).delete()
     return_url = request.GET.get("return_url")
     if return_url:
@@ -17,14 +39,28 @@ def delete_product(request, product_id):
     else:
         return redirect('/')
 
+
 @require_http_methods(['GET'])
 def detail_product(request):
     return render(request, 'product/detail.html')
 
+
+@login_required(login_url='/')
 @require_http_methods(['GET'])
-def edit_product(request, product_id):
-    #TODO
-    return render(request, 'product/edit.html')
+def edit_product(request):
+    #TODO is request.user has permission?
+    order_id = request.GET.get("order_id")
+    order = Order.objects.filter(id=order_id)
+    contract = Contract.objects.filter(order=order)
+    if request.method == 'GET':
+        return render('edit_contract.html', data={'contract': contract})
+    elif request.method == 'POST':
+        # TODO
+        raise NotImplementedError
+        return HttpResponse("")
+    else:
+        return None  # ERROR
+
 
 @require_http_methods(['GET'])
 def get_product(request, category=None):
@@ -33,6 +69,7 @@ def get_product(request, category=None):
     else:
         products = Product.objects.all()
     return render(request, 'product/get.html', {'products': products})
+
 
 @require_http_methods(['GET'])
 def get_categories(request):

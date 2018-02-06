@@ -20,7 +20,7 @@ class QuestionMethodTests(TestCase):
         self.product = Product(
             owner=self.user, title='test_title', content='test_content', one_line_introduce='test_one_line_introduce',
             category=random_choice(Category.get_all_category_code(Category)),
-            as_rule='test_as_rule', refund_rule='test_refund_rule', period_sensitivity=random_int(min=0, max=10))
+            as_rule='test_as_rule', refund_rule='test_refund_rule')
         self.product.save()
 
         self.project = Project(

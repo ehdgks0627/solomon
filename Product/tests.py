@@ -17,10 +17,9 @@ class QuestionMethodTests(TestCase):
         one_line_introduce = random_string()
         as_rule = random_string()
         refund_rule = random_string()
-        period_sensitivity = random_int(max=10)
         product = Product(
             owner=self.user, title=title, content=content, category=category, one_line_introduce=one_line_introduce,
-            as_rule=as_rule, refund_rule=refund_rule, period_sensitivity=period_sensitivity)
+            as_rule=as_rule, refund_rule=refund_rule)
         product.save()
 
         self.assertNotEqual(product, None)

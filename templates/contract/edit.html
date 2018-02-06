@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Page Content -->
+  <div class="container">
+    <!-- Page Features -->
+    <!-- Product Area -->
+
+    <h2 class="text-center">Contract</h2><br>
+
+    <div>
+      <table>
+        <tr>
+          <th scope="row"><label for="reg_client_name">Client Name</label></th>
+          <td>
+            <input type="text" name="client_name" value="" id="reg_client_name" required>
+          </td>
+        </tr>
+
+        <!-- /client name -->
+        <tr>
+          <th scope="row"><label for="reg_provider_name">Provider Name</label></th>
+          <td>
+            <input type="text" name="provider_name" value="" id="reg_provider_name" required>
+          </td>
+        </tr>
+
+        <!-- /second name -->
+        <tr>
+          <th scope="row"><label for="reg_period">Period</label></th>
+          <td>
+            <input type="text" name="period" value="" id="reg_period" required>
+            <span id="msg_period" title="(일)"></span>
+          </td>
+        </tr>
+
+        <!-- /contract days -->
+
+        <tr>
+          <th scope="row"><label for="reg_price">Price</label></th>
+          <td>
+            <input type="text" name="price" value="" id="reg_price" required>
+          </td>
+        </tr>
+
+        <!-- /contract price -->
+
+        <tr>
+          <th scope="row"><label for="reg_contract_price1">Rate of payment when quality is abnormal</label></th>
+          <td>
+            <input type="text" name="contract_price1" value="" id="reg_contract_price1" required>
+          </td>
+        </tr>
+
+        <!-- /defect price percent -->
+      </table>
+
+
+      <div class="mt-5" style="text-align: center;">
+        <input type="submit" name="submit" value="Create" class="btn btn-primary">
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+{% endblock %}

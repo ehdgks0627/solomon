@@ -10,18 +10,21 @@ import json
 class QuestionMethodTests(TestCase):
     def setUp(self):
         self.user = Account.objects.create_user(
-            id=random_string(), password="test", email="a@a.com", nickname="test", phone="010-0101-0101")
-        self.user2 = Account.objects.create_user(
-            id=random_string(), password="test2", email="a@b.com", nickname="test2", phone="010-0101-0102")
-        self.product = Product(
-            owner=self.user, title="test_title", content="test_content", one_line_introduce="test_one_line_introduce",
-            category=random_choice(Category.get_all_category_code(Category)),
-            as_rule="test_as_rule", refund_rule="test_refund_rule", period_sensitivity=random_int(min=0, max=10))
-        self.project = Project(
-            title="test_title", description="test_description", price=5000, period=3, owner=self.user)
+            id=random_string(), password='test', email='a@a.com', nickname='test', phone='010-0101-0101')
         self.user.save()
+
+        self.user2 = Account.objects.create_user(
+            id=random_string(), password='test2', email='a@b.com', nickname='test2', phone='010-0101-0102')
         self.user2.save()
+
+        self.product = Product(
+            owner=self.user, title='test_title', content='test_content', one_line_introduce='test_one_line_introduce',
+            category=random_choice(Category.get_all_category_code(Category)),
+            as_rule='test_as_rule', refund_rule='test_refund_rule', period_sensitivity=random_int(min=0, max=10))
         self.product.save()
+
+        self.project = Project(
+            title='test_title', description='test_description', price=5000, period=3, owner=self.user)
         self.project.save()
 
     def test_create_order(self):
@@ -39,7 +42,7 @@ class QuestionMethodTests(TestCase):
 
         order = Order(owner=owner, product=product, project=project, title=title, state=state,
                       payment_method=payment_method,
-                      price=price, period=period, tags=json.dumps(tags))
+                      price=price, period=period, tags=tags)
         order.save()
         self.order = order
 
@@ -52,7 +55,7 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(order.payment_method, payment_method)
         self.assertEqual(order.price, price)
         self.assertEqual(order.period, period)
-        self.assertEqual(json.loads(order.tags), tags)
+        self.assertEqual(order.tags, tags)
 
     def test_order_state(self):
         owner = self.user
@@ -67,7 +70,7 @@ class QuestionMethodTests(TestCase):
             tags.append(random_string())
 
         self.order = Order(owner=owner, product=product, project=project, state=state, payment_method=payment_method,
-                           price=price, period=period, tags=json.dumps(tags))
+                           price=price, period=period, tags=tags)
         self.assertEqual(self.order.change_state('진행 대기'), True)
         self.assertEqual(self.order.state, Order.STATE_CHOICE['진행 대기'])
         self.assertEqual(self.order.change_state('결제 대기'), False)
@@ -80,18 +83,6 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(self.order.state, Order.STATE_CHOICE['취소'])
         self.assertEqual(self.order.change_state('완료'), False)
         self.assertEqual(self.order.state, Order.STATE_CHOICE['취소'])
-
-
-STATE_CHOICE = {
-    '결제 대기': 10,
-    '진행 대기': 20,
-    '진행 중': 21,
-    '검수 중': 30,
-    '검수 완료': 31,
-    '완료': 40,
-    '취소 요청': 100,
-    '취소': 101,
-}
 
 
 class QuestionViewTests(TestCase):

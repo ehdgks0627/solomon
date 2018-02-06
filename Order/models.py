@@ -4,9 +4,15 @@ from Product.models import Product
 from Project.models import Project
 from Review.models import Review
 import datetime
+import json
 
 
 class Order(models.Model):
+    def __init__(self, tags, *args, **kwargs):
+        super(Order, self).__init__(*args, **kwargs)
+        self.tags = tags
+        self.save()
+
     STATE_CHOICE = {
         '결제 대기': 10,
         '진행 대기': 20,
@@ -81,11 +87,19 @@ class Order(models.Model):
     )
 
     # 판매자가 등록 할 수 있게끔, 추후에 판매자 분류 및 프로젝트 조회때 사용됨
-    tags = models.TextField(
+    _tags = models.TextField(
         blank=False,
         null=False,
         default='[]'
     )
+
+    @property
+    def tags(self):
+        return json.loads(self._tags)
+
+    @tags.setter
+    def tags(self, value):
+        self._tags = json.dumps(value)
 
     begin_at = models.DateTimeField(
         blank=True,

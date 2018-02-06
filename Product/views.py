@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http.response import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import Category, Product
@@ -9,16 +9,20 @@ def add_product(request):
     return render(request, 'product/add.html')
 
 @require_http_methods(['GET'])
-def delete_product(request):
-    #TODO
-    return render(request, 'product/delete.html')
+def delete_product(request, product_id):
+    Product.objects.filter(id=product_id).delete()
+    return_url = request.GET.get("return_url")
+    if return_url:
+        return redirect(return_url)
+    else:
+        return redirect('/')
 
 @require_http_methods(['GET'])
 def detail_product(request):
     return render(request, 'product/detail.html')
 
 @require_http_methods(['GET'])
-def edit_product(request):
+def edit_product(request, product_id):
     #TODO
     return render(request, 'product/edit.html')
 

@@ -13,18 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path, include
 from .views import *
+from django.views.generic.base import RedirectView
+
+favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^contact/', include('Contact.urls')),
-    url(r'^contract/', include('Contract.urls')),
-    url(r'^order/', include('Order.urls')),
-    url(r'^product/', include('Product.urls')),
-    url(r'^project/', include('Project.urls')),
-    url(r'^review/', include('Review.urls')),
-    url(r'^user/', include('User.urls')),
-    url(r'^$', main),
+    path(r'', main),
+    path(r'admin/', admin.site.urls),
+    path(r'contact/', include('Contact.urls')),
+    path(r'contract/', include('Contract.urls')),
+    path(r'order/', include('Order.urls')),
+    path(r'product/', include('Product.urls')),
+    path(r'project/', include('Project.urls')),
+    path(r'review/', include('Review.urls')),
+    path(r'user/', include('User.urls')),
+    path(r'favicon.ico', favicon_view),
 ]

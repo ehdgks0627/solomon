@@ -1,9 +1,10 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path
 from .views import *
 
 urlpatterns = [
-    url(r'login/$', login_view),
-    url(r'logout/$', logout_view),
-    url(r'register/$', register_view),
+    path(r'login/', login_view),
+    path(r'logout/', logout_view),
+    path(r'register/', register_view),
 ]

@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Project
+from Product.models import Category
 from User.models import Account
 from solomon.utils import *
 
@@ -15,8 +16,9 @@ class QuestionMethodTests(TestCase):
         description = random_string()
         price = random_int()
         period = random_int()
+        category = random_choice(Category.get_all_category_code(Category))
         project = Project(
-            title=title, description=description, price=price, period=period, owner=self.user)
+            title=title, description=description, price=price, period=period, category=category, owner=self.user)
         project.save()
 
         self.assertNotEqual(project, None)
@@ -24,6 +26,7 @@ class QuestionMethodTests(TestCase):
         self.assertEqual(project.description, description)
         self.assertEqual(project.price, price)
         self.assertEqual(project.period, period)
+        self.assertEqual(project.category, category)
         self.assertEqual(project.owner, self.user)
 
 

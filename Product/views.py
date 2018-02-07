@@ -72,10 +72,10 @@ def get_product(request, category=None):
 
 
 @require_http_methods(['GET'])
-def get_categories(request):
+def get_categories(request, language):
     response = {}
     for category in Category.CATEGORY_CHOICES:
-        response[category[0]] = []
+        response[category[0][language]] = []
         for label in category[1]:
-            response[category[0]].append(label)
+            response[category[0][language]].append([label[0], label[1][language]])
     return JsonResponse(data=response)

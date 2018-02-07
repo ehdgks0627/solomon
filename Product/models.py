@@ -2,7 +2,6 @@ from django.db import models
 from User.models import Account
 
 
-# Create your models here.
 class Category:
     CATEGORY_CHOICES = [
         ({'kor': u'소프트웨어 개발', 'eng': 'Software Development'}, [
@@ -40,12 +39,10 @@ class Category:
     ]
 
     def get_all_category_code(self):
-        #TODO check
         categories = []
         for cat in self.CATEGORY_CHOICES:
             for item in cat[1]:
                 categories.append(item[0])
-
         return categories
 
 
@@ -60,8 +57,8 @@ class Product(models.Model):
     img = models.ImageField(
         null=True,
         blank=True,
-        upload_to='image/img/',
-        default='image/img/default.png'
+        upload_to='static/files/img/',
+        default='static/files/img/default.png'
     )
 
     title = models.CharField(

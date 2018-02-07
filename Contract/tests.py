@@ -23,7 +23,9 @@ class QuestionMethodTests(TestCase):
         self.product.save()
 
         self.project = Project(
-            title='test_title', description='test_description', price=5000, period=3, owner=self.user)
+            title='test_title', description='test_description',
+            price=5000, period=3, owner=self.user,
+            category=random_choice(Category.get_all_category_code(Category)))
         self.project.save()
 
         self.order = Order(

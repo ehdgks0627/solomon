@@ -2,7 +2,6 @@ from django.db import models
 from User.models import Account
 from Order.models import Order
 
-
 class Contact(models.Model):
     owner = models.ForeignKey(
         Account,
@@ -33,5 +32,5 @@ class Contact(models.Model):
     )
 
     file = models.FileField(
-        upload_to='file/contact/'
+        upload_to='static/file/contact/'
     )

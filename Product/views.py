@@ -17,13 +17,13 @@ def create_product(request):
         product = Product(owner=request.user,
                           title=request.POST.get("title"),
                           category=request.POST.get("category"),
-                          img=request.FILE.get("img"),
+                          img=request.FILES.get("img"),
                           content=request.POST.get("content"),
                           one_line_introduce=request.POST.get("one_line_introduce"),
                           as_rule=request.POST.get("as_rule"),
                           refund_rule=request.POST.get("refund_rule"))
         product.save()
-        return redirect('/product/get/{}'.format(product.id))
+        return redirect('/product/get/{}/'.format(product.id))
     else:
         return None  # ERROR
 

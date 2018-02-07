@@ -4,44 +4,43 @@ from User.models import Account
 
 # Create your models here.
 class Category:
-    CATEGORY_CHOICES = (
-        (u'소프트웨어 개발', (
-            (101, u'웹사이트'),
-            (102, u'안드로이드앱'),
-            (103, u'아이폰'),
-            (104, u'응용프로그래밍'),
-            (105, u'기술지원 / 원격'),
-            (106, u'임베디드'),
-            (107, u'매크로'),
-            (108, u'PC견적'),
-            (109, u'IOT'),
-            (110, u'게임'),
-            (111, u'기타'),
-        )
-         ),
-        (u'디자인', (
-            (201, u'웹디자인'),
-            (202, u'로고 / CI&BI'),
-            (203, u'캘리그라피'),
-            (204, u'전단지 / 홍보물'),
-            (205, u'명함'),
-            (206, u'일러스트'),
-            (207, u'캐리커쳐'),
-            (208, u'만화 / 웹툰'),
-            (209, u'캐릭터 / 아이콘'),
-            (210, u'패키지'),
-            (211, u'인테리어'),
-            (222, u'3D'),
-            (223, u'PPT'),
-            (224, u'포토샵'),
-            (225, u'사진촬영'),
-            (226, u'누끼작업'),
-            (227, u'기타'),
-        )
-         )
-    )
+    CATEGORY_CHOICES = [
+        ({'kor': u'소프트웨어 개발', 'eng': 'Software Development'}, [
+            (101, {'kor': u'웹사이트', 'eng': 'Web'}),
+            (102, {'kor': u'안드로이드앱', 'eng': 'AndroidApp'}),
+            (103, {'kor': u'아이폰', 'eng': 'IOS'}),
+            (104, {'kor': u'응용프로그래밍', 'eng': 'Application'}),
+            (105, {'kor': u'기술지원 / 원격', 'eng': 'Support / Remote'}),
+            (106, {'kor': u'임베디드', 'eng': 'Embedded'}),
+            (107, {'kor': u'매크로', 'eng': 'Macro'}),
+            (108, {'kor': u'PC견적', 'eng': 'PC'}),
+            (109, {'kor': u'IoT', 'eng': 'IoT'}),
+            (110, {'kor': u'게임', 'eng': 'Game'}),
+            (111, {'kor': u'기타', 'eng': 'Etc'}),
+        ]),
+        ({'kor': u'디자인', 'eng': 'Design'}, [
+            (201, {'kor': u'웹디자인', 'eng': 'Web'}),
+            (202, {'kor': u'로고 / CI&BI', 'eng': 'Logo / CI&BI'}),
+            (203, {'kor': u'캘리그라피', 'eng': 'Calligraphy'}),
+            (204, {'kor': u'전단지 / 홍보물', 'eng': 'Web'}),
+            (205, {'kor': u'명함', 'eng': 'Business Card'}),
+            (206, {'kor': u'일러스트', 'eng': 'Illustration'}),
+            (207, {'kor': u'캐리커쳐', 'eng': 'Caricature'}),
+            (208, {'kor': u'만화 / 웹툰', 'eng': 'Web'}),
+            (209, {'kor': u'캐릭터 / 아이콘', 'eng': 'Icon'}),
+            (210, {'kor': u'패키지', 'eng': 'Package Design'}),
+            (211, {'kor': u'인테리어', 'eng': 'Interior'}),
+            (222, {'kor': u'3D', 'eng': '3D'}),
+            (223, {'kor': u'PPT', 'eng': 'PPT'}),
+            (224, {'kor': u'포토샵', 'eng': 'Photoshop'}),
+            (225, {'kor': u'사진촬영', 'eng': 'Take a Photo'}),
+            (226, {'kor': u'누끼작업', 'eng': ''}),
+            (227, {'kor': u'기타', 'eng': 'Etc'}),
+        ])
+    ]
 
     def get_all_category_code(self):
+        #TODO check
         categories = []
         for cat in self.CATEGORY_CHOICES:
             for item in cat[1]:
@@ -104,7 +103,6 @@ class Product(models.Model):
         blank=False,
         null=False,
     )
-
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

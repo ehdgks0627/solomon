@@ -1,7 +1,7 @@
 $(function () {
   window.category_queue = [];
   $.ajax({
-    url: '/product/categories/',
+    url: '/product/categories/eng/',
     dataType: 'json',
     type: 'GET',
     success: function( data, status, xhr ){

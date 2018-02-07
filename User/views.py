@@ -25,11 +25,14 @@ def logout_view(request):
 @require_http_methods(['POST'])
 def register_view(request):
     try:
-        user = Account.objects.create_user(id=request.POST.get('uid'),
-                                           password=request.POST.get('upw'),
-                                           email=request.POST.get('uemail'),
-                                           nickname=request.POST.get('unickname'),
-                                           phone=request.POST.get('uphone'))
+        user = Account.objects.create_user(
+            id=request.POST.get('uid'),
+            password=request.POST.get('upw'),
+            email=request.POST.get('uemail'),
+            name=request.POST.get('uname'),
+            nickname=request.POST.get('unickname'),
+            phone=request.POST.get('uphone')
+        )
     except IntegrityError:
         user = None
     if user is not None:

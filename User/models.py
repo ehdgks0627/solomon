@@ -7,9 +7,6 @@ from django.contrib.auth.models import (
 class AccountManager(BaseUserManager):
     # TODO add tuhmbnail field
     def create_user(self, id, password, email, name, nickname, phone):
-        if not email:
-            raise ValueError('Users must have an email address')
-
         user = self.model(
             id=id,
             email=AccountManager.normalize_email(email),
@@ -72,7 +69,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name='thumbnail',
         null=True,
         blank=True,
-        upload_to='image/thumbnail/',
+        upload_to='static/files/img/',
     )
 
     phone = models.CharField(

@@ -37,5 +37,9 @@ class Project(models.Model):
         null=False
     )
 
+    file = models.FileField(
+        upload_to='files/project/'
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,9 +1,84 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <script>
+    $(function () {
+        window.category_queue.push(function () {$.each(window.categories, function (index, element) {
+          $("#first_category").append($('<option>', {'value': index, 'text': index}));
+          change_second_category($("#first_category").val());
+        })});
+      });
+    function change_second_category(index) {
+      $("#second_category").empty();
+      $.each(window.categories[index], function (index, element) {
+        $("#second_category").append($('<option>', {'value': element[0], 'text': element[1]}));
+      });
+    }
+  </script>
   <!-- Page Content -->
   <div class="container">
-    
+    <!-- Page Features -->
+    <!-- Project Area -->
+    <h2 class="text-center">New Project</h2><br>
+
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div>
+        <table width="80%">
+          <tr>
+            <th scope="row"><label for="reg_Project_name">Title </label></th>
+            <td width="70%">
+              <input type="text" name="title" value="" id="reg_Project_name" minlength="1" maxlength="20" required>
+            </td>
+          </tr>
+          <!-- /content name -->
+          <tr>
+            <th scope="row"><label for="reg_category">Category</label></th>
+            <td>
+              <select id="first_category" onchange="change_second_category($(this).val())">
+              </select>
+            </td>
+            <td>
+              <select id="second_category" name="category">
+              </select>
+            </td>
+          </tr>
+          <!-- /category -->
+          <tr>
+            <th scope="row"><label for="reg_description">Description</label></th>
+            <td>
+              <textarea rows=4 cols=50 name="description"></textarea>
+            </td>
+          </tr>
+          <!-- /description -->
+          <tr>
+            <th scope="row"><label for="reg_price">Price</label></th>
+            <td>
+              <input type="text" name="price" value="" id="reg_price">$
+            </td>
+          </tr>
+          <!-- /price -->
+          <tr>
+            <th scope="row"><label for="reg_period">Period</label></th>
+            <td>
+              <input type="text" name="period" value="" id="reg_period">days
+            </td>
+          </tr>
+          <!-- /period -->
+          <tr>
+            <th scope="row"><label for="reg_thumbnail">File</label></th>
+            <td>
+              <input type="file" name="file" value="" id="reg_file">
+            </td>
+          </tr>
+          <!-- /file -->
+        </table>
+
+    </div>
+
+    <div class="mt-5" style="text-align: center;">
+      <input type="submit" name="submit" value="Create" class="btn btn-primary">
+    </div>
+    </form>
 
   </div>
   <!-- /.container -->

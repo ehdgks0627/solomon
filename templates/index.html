@@ -3,22 +3,21 @@
 <!-- Page Features -->
 <!-- Product Area -->
 
-<h2 class="text-center">Best Product</h2><br>
+<h2 class="text-center">Best Talent</h2><br>
 
 <div class="row text-center">
   {% for product in products %}
   <div class="col-lg-3 col-md-6 col-xs-12 mb-4">
     <div class="card">
-      <img class="card-img-top" src="{{product.thumbnail}}" alt="">
+      <img class="card-img-top" src="{{ product.img }}" alt="">
       <div class="card-body">
-        <h4 class="card-title">{{product.title}}</h4>
-        <p class="card-text">{{product.description}}</p>
-        <p style="text-align: right;">${{product.price}}</p>
+        <h4 class="card-title">{{ product.title }}</h4>
+        <p class="card-text">{{ product.one_line_introduce }}</p>
       </div>
       <div class="card-footer">
-        <a href="#" style="color: black;">
-                  <img src="{{project.owner.thumbnail}}" width="30px" height="30px" alt=""> {{product.owner.nickname}}
-                </a>
+        <a href="/product/detail/{{ product.id }}" style="color: black;">
+          <img src="{{product.owner.thumbnail}}" width="30px" height="30px" alt=""> {{ product.owner.nickname }}
+        </a>
       </div>
     </div>
   </div>
@@ -35,7 +34,7 @@
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">구매 회원</h4>
+          <h4 class="card-title">Buyer</h4>
         </div>
       </div>
     </a>
@@ -46,7 +45,7 @@
     <a href="#" style="color: black;">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">판매 회원</h4>
+          <h4 class="card-title">Seller</h4>
         </div>
       </div>
     </a>
@@ -63,12 +62,11 @@
   {% for project in projects %}
   <div class="col-lg-3 col-md-6 col-xs-12 mb-4">
     <div class="card">
-      <img class="card-img-top" src="{{project.thumbnail}}" alt="">
+      <img class="card-img-top" src="{{ project.img }}" alt="">
       <div class="card-body">
-        <h4 class="card-title">{{project.title}}</h4>
-        <p class="card-text">{{project.description}}</p>
-        <p style="text-align: right;">{{project.period}} days</p>
-        <p style="text-align: right;">${{project.price}}</p>
+        <h4 class="card-title">{{ project.title }}</h4>
+        <p style="text-align: right;">{{ project.period }} days</p>
+        <p style="text-align: right;">$ {{ project.price }}</p>
       </div>
       <div class="card-footer">
         <a href="#" class="btn btn-primary">I`ll do it</a>
@@ -87,7 +85,7 @@
       <div class="card">
         <div class="card-body">
           <img src="/static/img/help.png" width="100px" height="100px"></img>
-            <h4 class="card-title">고객센터</h4>
+            <h4 class="card-title">Help Center</h4>
         </div>
       </div>
     </a>
@@ -99,7 +97,7 @@
       <div class="card">
         <div class="card-body">
           <img src="/static/img/siren.png" width="100px" height="100px"></img>
-            <h4 class="card-title">신고하기</h4>
+            <h4 class="card-title">Notify</h4>
         </div>
       </div>
     </a>

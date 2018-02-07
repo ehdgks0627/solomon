@@ -40,6 +40,11 @@ def edit_project(request):
     return render(request, 'project/edit.html')
 
 
+
 @require_http_methods(['GET'])
-def get_project(request):
-    return render(request, 'project/get.html')
+def get_project(request, category=None):
+    if category:
+        products = Project.objects.filter(category=category)
+    else:
+        products = Project.objects.all()
+    return render(request, 'project/get.html', {'projects': products})

@@ -2,18 +2,16 @@
 {% load static %}
 
 {% block content %}
-  <!-- Page Content -->
-  <div class="container">
     <!-- Product Area -->
 
     <h2 class="text-center">Products</h2><br>
 
     <div class="row text-center">
       {% for product in products %}
-          <div class="col-lg-3 col-md-6 col-xs-12 mb-4">
+          <div class="col-lg-3 col-md-6 col-xs-12 mb-4" style="height: 10rem; width: 10rem; overflow: none;">
             <a href="/product/detail/{{ product.id }}" style="color: black;">
               <div class="card">
-                <img class="card-img-top" src="/{{ product.img }}" alt="">
+                <img class="card-img-top" src="/{{ product.img }}" alt="프로필 이미지" style="height: 100%; width: 100%;">
                 <div class="card-body">
                   <h4 class="card-title">{{ product.title }}</h4>
                   <p class="card-text">{{ product.description }}</p>
@@ -28,7 +26,4 @@
       {% endfor %}
     </div>
     <!-- /.product row -->
-
-  </div>
-  <!-- /.container -->
 {% endblock %}

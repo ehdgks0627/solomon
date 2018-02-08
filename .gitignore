@@ -238,4 +238,3 @@ $RECYCLE.BIN/
 .idea
 db.sqlite3
 **/migrations
-static/files/img/

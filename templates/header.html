@@ -1,5 +1,7 @@
-{% include 'login_modal.html' %}
-{% include 'register_modal.html' %}
+{% if not user.is_active %}
+  {% include 'account/modal/login.html' %}
+  {% include 'account/modal/register.html' %}
+{% endif %}
 
 <nav class="fixed-top">
   <div class="navbar navbar-dark navbar-expand-md bg-primary">

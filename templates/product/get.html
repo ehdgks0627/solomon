@@ -8,11 +8,11 @@
 
     <div class="row text-center">
       {% for product in products %}
-          <div class="col-lg-3 col-md-6 col-xs-12 mb-4" style="height: 10rem; width: 10rem; overflow: none;">
+          <div class="col-lg-3 col-md-6 col-xs-12 mb-4 base-card">
             <a href="/product/detail/{{ product.id }}" style="color: black;">
               <div class="card">
-                <img class="card-img-top" src="/{{ product.img }}" alt="프로필 이미지" style="height: 100%; width: 100%;">
-                <div class="card-body">
+                <img class="" src="/{{ product.img }}" alt="프로필 이미지" height="100px" width="100px">
+                <div class="card-body" style="height: 100px">
                   <h4 class="card-title">{{ product.title }}</h4>
                   <p class="card-text">{{ product.description }}</p>
                 </div>

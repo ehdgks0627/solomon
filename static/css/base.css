@@ -19,6 +19,12 @@ body {
   height: 1em;
 }
 
+.base-card {
+    overflow: auto;
+    width: 10rem;
+    height: 20rem;
+}
+
 .modal-login {
   pointer-events: auto;
 }

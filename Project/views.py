@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http.response import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from .models import Project
@@ -40,7 +41,6 @@ def edit_project(request):
     return render(request, 'project/edit.html')
 
 
-
 @require_http_methods(['GET'])
 def get_project(request, category=None):
     if category:
@@ -48,3 +48,10 @@ def get_project(request, category=None):
     else:
         products = Project.objects.all()
     return render(request, 'project/get.html', {'projects': products})
+
+
+@login_required(login_url='/')
+@require_http_methods(['GET'])
+def own_project(request):
+    projects = Project.objects.filter(owner=request.user).order_by("-created_at")
+    return JsonResponse(list(projects.values("title", "price", "period", "created_at")), safe=False)

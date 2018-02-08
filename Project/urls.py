@@ -8,4 +8,5 @@ urlpatterns = [
     path(r'delete/<int:id>/', delete_project),
     path(r'detail/<int:id>/', detail_project),
     path(r'edit/<int:id>/', edit_project),
+    path(r'own/', own_project),
 ]

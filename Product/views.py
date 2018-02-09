@@ -31,13 +31,11 @@ def create_product(request):
 @login_required(login_url='/')
 @require_http_methods(['GET'])
 def delete_product(request, product_id):
-    #TODO is request.user has permission?
-    Product.objects.filter(id=product_id).delete()
-    return_url = request.GET.get("return_url")
-    if return_url:
-        return redirect(return_url)
-    else:
-        return redirect('/')
+    product = Product.objects.filter(id=product_id)
+
+    if product and product.owner == request.user or request.user.is_staff:
+        product.delete()
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @require_http_methods(['GET'])
@@ -49,7 +47,7 @@ def detail_product(request, product_id):
 @login_required(login_url='/')
 @require_http_methods(['GET'])
 def edit_product(request):
-    #TODO is request.user has permission?
+    # TODO is request.user has permission?
     order_id = request.GET.get("order_id")
     order = Order.objects.filter(id=order_id)
     contract = Contract.objects.filter(order=order)

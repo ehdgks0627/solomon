@@ -24,14 +24,17 @@ def create_project(request):
         return None  # ERROR
 
 
+@login_required(login_url='/')
 @require_http_methods(['GET'])
-def delete_project(request):
-    # TODO
-    return render(request, 'project/delete.html')
+def delete_project(request, project_id):
+    project = Project.objects.filter(id=project_id)
+    if project and project.owner == request.user or request.user.is_staff:
+        project.delete()
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @require_http_methods(['GET'])
-def detail_project(request):
+def detail_project(request, project_id):
     return render(request, 'project/detail.html')
 
 

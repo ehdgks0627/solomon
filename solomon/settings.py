@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
+    'Chat',
     'Contact',
     'Contract',
     'Order',
@@ -125,3 +127,13 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'User.Account'
+
+ASGI_APPLICATION = 'solomon.routings.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.environ.get('REDIS_HOST', 'localhost'), 6379)],
+        },
+    }
+}

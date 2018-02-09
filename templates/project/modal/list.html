@@ -1,9 +1,24 @@
 <script>
   $(function () {
-    $('.list-group-item').on('click', function(e){
-    var previous = $(this).closest(".list-group").children(".active");
-    previous.removeClass('active');
-    $(e.target).addClass('active');
+    $.ajax({
+      url: '/project/own/',
+      dataType: 'json',
+      type: 'GET',
+      success: function( data, status, xhr ){
+          $.each(data, function (key, element) {
+            var a = $('<a>', {'class': 'list-group-item', 'text': element.title, 'project_id': element.id, 'href': '#'});
+            a.on('click', function(e){
+              var previous = $(this).closest(".list-group").children(".active");
+              previous.removeClass('active');
+              if(previous[0] != e.target) {
+                $(e.target).addClass('active'); }
+            });
+            $('#project-list-group').append(a);
+          });
+      },
+      error: function( xhr, status, error ){
+          console.log( error );
+      }
     });
   });
 </script>
@@ -12,14 +27,8 @@
     <div class="modal-dialog" style="pointer-events: auto;">
         <div class="modal-container">
           <h1>Select your Project</h1>
-          <div class="list-group">
-              <a href="#" class="list-group-item active">Cras justo odio</a>
-              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-              <a href="#" class="list-group-item">Morbi leo risus</a>
-              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-              <a href="#" class="list-group-item">Vestibulum at eros</a>
+          <div class="list-group" id="project-list-group">
           </div>
-
           <div class="mt-5" style="text-align: center;">
             <a href="" class="btn btn-primary">Propose Project</a>
           </div>

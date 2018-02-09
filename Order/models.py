@@ -36,7 +36,7 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         blank=False,
         null=False,
-        related_name='owner'
+        related_name='%(app_label)s_%(class)s_owner'
     )
 
     product = models.ForeignKey(

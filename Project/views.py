@@ -57,4 +57,4 @@ def get_project(request, category=None):
 @require_http_methods(['GET'])
 def own_project(request):
     projects = Project.objects.filter(owner=request.user).order_by("-created_at")
-    return JsonResponse(list(projects.values("title", "price", "period", "created_at")), safe=False)
+    return JsonResponse(list(projects.values("title", "price", "period", "id", "created_at")), safe=False)

@@ -238,3 +238,4 @@ $RECYCLE.BIN/
 .idea
 db.sqlite3
 **/migrations
+dump.rdb

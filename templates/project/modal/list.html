@@ -1,0 +1,28 @@
+<script>
+  $(function () {
+    $('.list-group-item').on('click', function(e){
+    var previous = $(this).closest(".list-group").children(".active");
+    previous.removeClass('active');
+    $(e.target).addClass('active');
+    });
+  });
+</script>
+
+<div class="modal hide fade" id="list-modal" role="dialog" style="display: none;" tabindex="-1">
+    <div class="modal-dialog" style="pointer-events: auto;">
+        <div class="modal-container">
+          <h1>Select your Project</h1>
+          <div class="list-group">
+              <a href="#" class="list-group-item active">Cras justo odio</a>
+              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+              <a href="#" class="list-group-item">Morbi leo risus</a>
+              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+              <a href="#" class="list-group-item">Vestibulum at eros</a>
+          </div>
+
+          <div class="mt-5" style="text-align: center;">
+            <a href="" class="btn btn-primary">Propose Project</a>
+          </div>
+        </div>
+    </div>
+</div>

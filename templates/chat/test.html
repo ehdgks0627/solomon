@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+    var socket = new WebSocket("ws://localhost:8080/chat/notify/");
+    socket.onopen = function (event) {
+      socket.send(JSON.stringify({"command": "send", "message": "hello socket!"}));
+    };
+</script>
+{% endblock %}

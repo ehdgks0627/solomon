@@ -5,6 +5,7 @@ from .views import *
 urlpatterns = [
     path(r'', main),
     path(r'admin/', admin.site.urls),
+    path(r'mypage/', mypage),
     path(r'chat/', include('chat.urls')),
     path(r'contact/', include('contact.urls')),
     path(r'contract/', include('contract.urls')),

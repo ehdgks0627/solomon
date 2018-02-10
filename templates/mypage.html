@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Page Features -->
+<!-- Product Area -->
+
+<h2 class="text-center">My Page</h2><br>
+
+<hr>
+
+<div class="row">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-2">
+    <img src="/static/img/user.svg" alt="" width="50rem" height="50rem">
+    {{ user.name }}
+  </div>
+</div>
+
+<hr>
+
+<div class="row text-center">
+  <div class="col-lg-3 col-md-3 col-xs-12 my-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Project</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="col-lg-3 col-md-3 col-xs-12 my-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Talent</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-xs-12 my-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Order</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-lg-3 col-md-3 col-xs-12 my-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Review</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-xs-12 mb-4">
+    <a href="#" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Review</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -31,7 +31,7 @@ def create_product(request):
 @login_required(login_url='/')
 @require_http_methods(['GET'])
 def delete_product(request, product_id):
-    product = Product.objects.filter(id=product_id)
+    product = Product.objects.get(id=product_id)
 
     if product and product.owner == request.user or request.user.is_staff:
         product.delete()
@@ -40,7 +40,7 @@ def delete_product(request, product_id):
 
 @require_http_methods(['GET'])
 def detail_product(request, product_id):
-    product = Product.objects.filter(id=product_id)
+    product = Product.objects.get(id=product_id)
     return render(request, 'product/detail.html', {'product': product[0]})
 
 
@@ -49,8 +49,8 @@ def detail_product(request, product_id):
 def edit_product(request):
     # TODO is request.user has permission?
     order_id = request.GET.get("order_id")
-    order = Order.objects.filter(id=order_id)
-    contract = Contract.objects.filter(order=order)
+    order = Order.objects.get(id=order_id)
+    contract = Contract.objects.get(order=order)
     if request.method == 'GET':
         return render('product/edit.html', {'contract': contract})
     elif request.method == 'POST':
@@ -64,7 +64,7 @@ def edit_product(request):
 @require_http_methods(['GET'])
 def get_product(request, category=None):
     if category:
-        products = Product.objects.filter(category=category)
+        products = Product.objects.get(category=category)
     else:
         products = Product.objects.all()
     return render(request, 'product/get.html', {'products': products})

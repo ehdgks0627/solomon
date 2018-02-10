@@ -12,7 +12,7 @@ class Order(models.Model):
         super(Order, self).__init__(*args, **kwargs)
         if tags:
             self.tags = tags
-            #self.save()
+            # self.save()
 
     STATE_CHOICE = {
         '계약서 작업': 10,
@@ -55,6 +55,13 @@ class Order(models.Model):
 
     title = models.CharField(
         max_length=256,
+        blank=False,
+        null=False
+    )
+
+    project = models.OneToOneField(
+        Project,
+        on_delete=models.CASCADE,
         blank=False,
         null=False
     )

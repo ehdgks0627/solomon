@@ -41,7 +41,7 @@ def delete_product(request, product_id):
 @require_http_methods(['GET'])
 def detail_product(request, product_id):
     product = Product.objects.get(id=product_id)
-    return render(request, 'product/detail.html', {'product': product[0]})
+    return render(request, 'product/detail.html', {'product': product})
 
 
 @login_required(login_url='/')

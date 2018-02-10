@@ -14,7 +14,7 @@ def detail_contract(request, contract_id):
 @require_http_methods(['GET'])
 def edit_contract(request, contract_id):
     # TODO is request.user has permission?
-    contract = Contract.objects.filter(id=contract_id)
+    contract = Contract.objects.get(id=contract_id)
     if request.method == 'GET':
         return render(request, 'contract/edit.html', {'contract': contract})
     elif request.method == 'POST':
@@ -28,5 +28,5 @@ def edit_contract(request, contract_id):
 @require_http_methods(['GET'])
 def form_contract(request, contract_id):
     # TODO is request.user has permission?
-    contract = Contract.objects.filter(id=contract_id)
+    contract = Contract.objects.get(id=contract_id)
     return render(request, 'contract/form.html', {'contract': contract})

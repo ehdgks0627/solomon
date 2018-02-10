@@ -2,6 +2,7 @@ from django.db import models
 from user.models import Account
 from order.models import Order
 
+
 class Contact(models.Model):
     owner = models.ForeignKey(
         Account,

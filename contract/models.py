@@ -10,12 +10,11 @@ class Contract(models.Model):
             self.clause = clause
             self.save()
 
-    order = models.ForeignKey(
+    order = models.OneToOneField(
         Order,
         on_delete=models.CASCADE,
         blank=False,
-        null=False,
-        related_name='order'
+        null=False
     )
 
     buyer_agreement = models.BooleanField(

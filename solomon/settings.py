@@ -36,14 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
-    'Chat',
-    'Contact',
-    'Contract',
-    'Order',
-    'Product',
-    'Project',
-    'Review',
-    'User'
+    'chat',
+    'contact',
+    'contract',
+    'order',
+    'product',
+    'project',
+    'review',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -126,7 +126,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-AUTH_USER_MODEL = 'User.Account'
+AUTH_USER_MODEL = 'user.Account'
 
 ASGI_APPLICATION = 'solomon.routings.application'
 CHANNEL_LAYERS = {

@@ -12,7 +12,7 @@
         $("#msgBox").append($('<p>', {'text': data.sender + ' : ' + data.message}));
       }
       else if(data.command == "read") {
-        $("#msgBox").append($('<p>', {'text': '[읽음] ' + data.sender + '(이)가 메세지 읽음'}));
+        $("#msgBox").append($('<p>', {'text': '[알림] ' + data.sender + '(이)가 메세지 읽음'}));
       }
     };
     function send_message() {

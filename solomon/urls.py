@@ -3,9 +3,11 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
-    path(r'', main),
+    path(r'', initial),
     path(r'admin/', admin.site.urls),
+    path(r'main/', main),
     path(r'mypage/', mypage),
+    path(r'favicon.ico', favicon_view),
     path(r'chat/', include('chat.urls')),
     path(r'contact/', include('contact.urls')),
     path(r'contract/', include('contract.urls')),
@@ -14,5 +16,4 @@ urlpatterns = [
     path(r'project/', include('project.urls')),
     path(r'review/', include('review.urls')),
     path(r'user/', include('user.urls')),
-    path(r'favicon.ico', favicon_view),
 ]

@@ -64,7 +64,7 @@ def edit_product(request):
 @require_http_methods(['GET'])
 def get_product(request, category=None):
     if category:
-        products = Product.objects.get(category=category)
+        products = Product.objects.filter(category=category)
     else:
         products = Product.objects.all()
     return render(request, 'product/get.html', {'products': products})

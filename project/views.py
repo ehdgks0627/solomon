@@ -47,7 +47,7 @@ def edit_project(request):
 @require_http_methods(['GET'])
 def get_project(request, category=None):
     if category:
-        products = Project.objects.get(category=category)
+        products = Project.objects.filter(category=category)
     else:
         products = Project.objects.all()
     return render(request, 'project/get.html', {'projects': products})
@@ -56,5 +56,5 @@ def get_project(request, category=None):
 @login_required(login_url='/')
 @require_http_methods(['GET'])
 def own_project(request):
-    projects = Project.objects.get(owner=request.user).order_by("-created_at")
+    projects = Project.objects.filter(owner=request.user).order_by("-created_at")
     return JsonResponse(list(projects.values("title", "price", "period", "id", "created_at")), safe=False)

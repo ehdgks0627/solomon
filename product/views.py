@@ -23,7 +23,7 @@ def create_product(request):
                           as_rule=request.POST.get("as_rule"),
                           refund_rule=request.POST.get("refund_rule"))
         product.save()
-        return redirect('/product/get/{}/'.format(product.id))
+        return redirect('/product/detail/{}/'.format(product.id))
     else:
         return None  # ERROR
 

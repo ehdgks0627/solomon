@@ -5,7 +5,6 @@ from channels.generic.websocket import AsyncJsonWebsocketConsumer
 class ChatConsumer(AsyncJsonWebsocketConsumer):
     async def websocket_connect(self, message):
         await super(ChatConsumer, self).websocket_connect(message)
-        print("Connected!")
         await self.channel_layer.group_add(self.scope["user"].id, self.channel_name)
 
     async def websocket_disconnect(self, message):
@@ -28,11 +27,9 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             receiver,
             {
                 "type": "chat.message",
-                "sender": self.scope["user"].id,
                 "message": message,
                 "command": command
             })
-        # TODO message id? or ...
         pass
 
     async def handle_send(self, content):
@@ -44,10 +41,10 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             receiver,
             {
                 "type": "chat.message",
-                "sender": self.scope["user"].id,
                 "message": message,
                 "command": command
             })
 
     async def chat_message(self, event):
-        await self.send_json({"sender": event["sender"], "message": event["message"], "command": event["command"]})
+        await self.send_json(
+            {"sender": self.scope["user"].id, "message": event["message"], "command": event["command"]})

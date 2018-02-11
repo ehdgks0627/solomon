@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'user.Account'
 
 ASGI_APPLICATION = 'solomon.routings.application'
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',

@@ -4,11 +4,33 @@
 <script>
     var socket = new WebSocket("ws://localhost:8080/chat/notify/");
     socket.onopen = function (event) {
-      socket.send(JSON.stringify({"command": "send", "message": "hello socket!"}));
+      $("#msgBox").append($('<p>', {'text': '[안내] 서버와 연결됨'}));
     };
     socket.onmessage = function (event) {
-      alert(event.data);
-      console.log(event.data);
+      var data = JSON.parse(event.data);
+      if(data.command == "send") {
+        $("#msgBox").append($('<p>', {'text': data.sender + ' : ' + data.message}));
+      }
+      else if(data.command == "read") {
+        $("#msgBox").append($('<p>', {'text': '[읽음] ' + data.sender + '(이)가 메세지 읽음'}));
+      }
     };
+    function send_message() {
+      socket.send(JSON.stringify({"command": "send",
+                                  "receiver": $("input[name='receiver']").val(),
+                                  "message": $("input[name='message']").val()}));
+    }
+    function read_message() {
+      socket.send(JSON.stringify({"command": "read",
+                                  "receiver": $("input[name='receiver']").val()}));
+    }
 </script>
+YOUR ID : {{ user.get_username }}<br>
+RECEIVER : <input type="text" name="receiver" value="">
+MESSAGE : <input type="text" name="message" value="">
+<button type="button" name="button" onclick="send_message()">보내기</button>
+<button type="button" name="button" onclick="read_message()">읽기</button>
+<div id="msgBox">
+
+</div>
 {% endblock %}

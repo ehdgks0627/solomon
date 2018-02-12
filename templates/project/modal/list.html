@@ -21,6 +21,18 @@
       }
     });
   });
+  function propose_project() {
+    if(!$("#project-list-group").find(".active").length) {
+      $("#alert-container").append(make_alert('Please select your project.', 'alert-danger'));
+    }
+  }
+
+  function make_alert(msg, level) {
+    var div = $('<div>', {'class': 'alert mt-3 fade show in ' + level, 'role': 'alert', 'text': msg, 'style': 'margin-bottom: 0px;'});
+    var span = $('<span>', {'href': '#', 'class': 'close', 'data-dismiss': 'alert', 'text': '×'});
+    div.append(span);
+    return div;
+  }
 </script>
 
 <div class="modal hide fade" id="list-modal" role="dialog" style="display: none;" tabindex="-1">
@@ -30,7 +42,10 @@
           <div class="list-group" id="project-list-group">
           </div>
           <div class="mt-5" style="text-align: center;">
-            <a href="" class="btn btn-primary">Propose Project</a>
+            <button onclick="propose_project()" class="btn btn-primary">Propose Project</button>
+          </div>
+          <div id="alert-container">
+
           </div>
         </div>
     </div>

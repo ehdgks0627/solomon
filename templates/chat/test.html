@@ -2,7 +2,7 @@
 
 {% block content %}
 <script>
-    var socket = new WebSocket("ws://localhost:8080/chat/notify/");
+    var socket = new WebSocket("ws://" + document.location.host + "/chat/notify/");
     socket.onopen = function (event) {
       $("#msgBox").append($('<p>', {'text': '[안내] 서버와 연결됨'}));
     };

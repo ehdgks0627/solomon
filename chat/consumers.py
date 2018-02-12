@@ -28,7 +28,8 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             {
                 "type": "chat.message",
                 "message": message,
-                "command": command
+                "command": command,
+                "sender": self.scope["user"].id,
             })
         pass
 
@@ -42,9 +43,10 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             {
                 "type": "chat.message",
                 "message": message,
-                "command": command
+                "command": command,
+                "sender": self.scope["user"].id,
             })
 
     async def chat_message(self, event):
         await self.send_json(
-            {"sender": self.scope["user"].id, "message": event["message"], "command": event["command"]})
+            {"sender": event["sender"], "message": event["message"], "command": event["command"]})

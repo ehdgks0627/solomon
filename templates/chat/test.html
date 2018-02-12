@@ -8,6 +8,7 @@
     };
     socket.onmessage = function (event) {
       var data = JSON.parse(event.data);
+      console.log(data);
       if(data.command == "send") {
         $("#msgBox").append($('<p>', {'text': data.sender + ' : ' + data.message}));
       }

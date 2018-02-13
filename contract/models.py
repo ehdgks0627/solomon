@@ -1,21 +1,18 @@
 from django.db import models
-from order.models import Order
 import json
 
 
-class Contract(models.Model):
-    def __init__(self, clause=None, *args, **kwargs):
-        super(Contract, self).__init__(*args, **kwargs)
+class ContractManager(models.Manager):
+    def create_contract(self, clause=None, **kwargs):
+        contract = self.model(**kwargs)
         if clause:
-            self.clause = clause
-            self.save()
+            contract.clause = clause
+            contract.save()
+        return contract
 
-    order = models.OneToOneField(
-        Order,
-        on_delete=models.CASCADE,
-        blank=False,
-        null=False
-    )
+
+class Contract(models.Model):
+    objects = ContractManager()
 
     buyer_agreement = models.BooleanField(
         blank=False,

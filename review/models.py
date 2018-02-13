@@ -1,18 +1,18 @@
 from django.db import models
-from user.models import Account
-from product.models import Product
 
 
 class Review(models.Model):
     owner = models.ForeignKey(
-        Account,
+        'user.Account',
+        related_name='%(app_label)s_%(class)s_owner',
         on_delete=models.CASCADE,
         blank=False,
         null=False
     )
 
     product = models.ForeignKey(
-        Product,
+        'product.Product',
+        related_name='%(app_label)s_%(class)s_product',
         on_delete=models.CASCADE,
         blank=False,
         null=False

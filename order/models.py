@@ -1,4 +1,5 @@
 from django.db import models
+from contract.models import Contract
 from user.models import Account
 from product.models import Product
 from project.models import Project
@@ -41,14 +42,14 @@ class Order(models.Model):
 
     product = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE,
-        blank=False,
-        null=False
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
     )
 
     project = models.ForeignKey(
         Project,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True
     )
@@ -59,8 +60,8 @@ class Order(models.Model):
         null=False
     )
 
-    project = models.OneToOneField(
-        Project,
+    contract = models.OneToOneField(
+        Contract,
         on_delete=models.CASCADE,
         blank=False,
         null=False

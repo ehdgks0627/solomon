@@ -8,6 +8,7 @@
           $.each(data, function (key, element) {
             var a = $('<a>', {'class': 'list-group-item', 'text': element.title, 'project_id': element.id, 'href': '#'});
             a.on('click', function(e){
+              $(".alert").alert('close');
               var previous = $(this).closest(".list-group").children(".active");
               previous.removeClass('active');
               if(previous[0] != e.target) {
@@ -23,12 +24,13 @@
   });
   function propose_project() {
     if(!$("#project-list-group").find(".active").length) {
+      $(".alert").alert('close');
       $("#alert-container").append(make_alert('Please select your project.', 'alert-danger'));
     }
   }
 
   function make_alert(msg, level) {
-    var div = $('<div>', {'class': 'alert mt-3 fade show in ' + level, 'role': 'alert', 'text': msg, 'style': 'margin-bottom: 0px;'});
+    var div = $('<div>', {'class': 'alert mt-3 show ' + level, 'role': 'alert', 'text': msg, 'style': 'margin-bottom: 0px;'});
     var span = $('<span>', {'href': '#', 'class': 'close', 'data-dismiss': 'alert', 'text': '×'});
     div.append(span);
     return div;

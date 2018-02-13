@@ -1,19 +1,32 @@
 from django.db import models
 from contract.models import Contract
-from user.models import Account
-from product.models import Product
-from project.models import Project
-from review.models import Review
 import datetime
 import json
 
 
+class OrderManager(models.Manager):
+    def create_order(self, tags, **kwargs):
+        contract = Contract.objects.create_contract()
+        contract.save()
+        order = self.model(contract=contract, **kwargs)
+        order.tags = tags
+        order.save()
+        return order
+
+    """
+        def __init__(self, tags=None, *args, **kwargs):
+        # TODO fix
+        # super(Order, self).__init__(*args, **kwargs)
+        # if tags:
+        #    self.tags = tags
+        #    self.save()
+
+        pass
+    """
+
+
 class Order(models.Model):
-    def __init__(self, tags=None, *args, **kwargs):
-        super(Order, self).__init__(*args, **kwargs)
-        if tags:
-            self.tags = tags
-            # self.save()
+    objects = OrderManager()
 
     STATE_CHOICE = {
         '계약서 작업': 10,
@@ -33,22 +46,24 @@ class Order(models.Model):
     )
 
     owner = models.ForeignKey(
-        Account,
+        'user.Account',
+        related_name='%(app_label)s_%(class)s_owner',
         on_delete=models.CASCADE,
         blank=False,
         null=False,
-        related_name='%(app_label)s_%(class)s_owner'
     )
 
     product = models.ForeignKey(
-        Product,
+        'product.Product',
+        related_name='%(app_label)s_%(class)s_produc',
         on_delete=models.SET_NULL,
         blank=True,
         null=True
     )
 
     project = models.ForeignKey(
-        Project,
+        'project.Project',
+        related_name='%(app_label)s_%(class)s_project',
         on_delete=models.SET_NULL,
         blank=True,
         null=True
@@ -61,14 +76,16 @@ class Order(models.Model):
     )
 
     contract = models.OneToOneField(
-        Contract,
+        'contract.Contract',
+        related_name='%(app_label)s_%(class)s_contract',
         on_delete=models.CASCADE,
         blank=False,
         null=False
     )
 
     review = models.ForeignKey(
-        Review,
+        'review.Review',
+        related_name='%(app_label)s_%(class)s_review',
         on_delete=models.CASCADE,
         blank=True,
         null=True

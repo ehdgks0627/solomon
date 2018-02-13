@@ -1,11 +1,10 @@
 from django.db import models
-from user.models import Account
-from order.models import Order
 
 
 class Contact(models.Model):
     owner = models.ForeignKey(
-        Account,
+        'user.Account',
+        related_name='%(app_label)s_%(class)s_owner',
         on_delete=models.CASCADE,
         blank=False,
         null=False
@@ -26,7 +25,8 @@ class Contact(models.Model):
     )
 
     order = models.ForeignKey(
-        Order,
+        'order.Order',
+        related_name='%(app_label)s_%(class)s_order',
         on_delete=models.CASCADE,
         blank=True,
         null=True

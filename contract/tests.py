@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .models import Order
+from .models import Contract
+from order.models import Order
 from project.models import Project
 from product.models import Product, Category
 from user.models import Account
@@ -28,7 +29,7 @@ class QuestionMethodTests(TestCase):
             category=random_choice(Category.get_all_category_code(Category)))
         self.project.save()
 
-        self.order = Order(
+        self.order = Order.objects.create_order(
             owner=self.user,
             product=self.product,
             project=self.project,

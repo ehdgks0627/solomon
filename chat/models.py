@@ -1,10 +1,9 @@
 from django.db import models
-from user.models import Account
 
 
 class Chat(models.Model):
     owner = models.ForeignKey(
-        Account,
+        'user.Account',
         related_name='%(app_label)s_%(class)s_owner',
         on_delete=models.CASCADE,
         blank=False,
@@ -12,7 +11,7 @@ class Chat(models.Model):
     )
 
     receiver = models.ForeignKey(
-        Account,
+        'user.Account',
         related_name='%(app_label)s_%(class)s_receiver',
         on_delete=models.CASCADE,
         blank=False,

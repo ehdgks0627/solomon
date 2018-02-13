@@ -41,10 +41,9 @@ class QuestionMethodTests(TestCase):
         for _ in range(5):
             tags.append(random_string())
 
-        order = Order(owner=owner, product=product, project=project, title=title, state=state,
-                      payment_method=payment_method,
-                      price=price, period=period, tags=tags)
-        order.save()
+        order = Order.objects.create_order(owner=owner, product=product, project=project, title=title, state=state,
+                                           payment_method=payment_method,
+                                           price=price, period=period, tags=tags)
         self.order = order
 
         self.assertNotEqual(order, None)
@@ -70,8 +69,8 @@ class QuestionMethodTests(TestCase):
         for _ in range(5):
             tags.append(random_string())
 
-        self.order = Order(owner=owner, product=product, project=project, state=state, payment_method=payment_method,
-                           price=price, period=period, tags=tags)
+        self.order = Order.objects.create_order(owner=owner, product=product, project=project, state=state,
+                                                payment_method=payment_method, price=price, period=period, tags=tags)
         self.assertEqual(self.order.change_state('진행 대기'), True)
         self.assertEqual(self.order.state, Order.STATE_CHOICE['진행 대기'])
         self.assertEqual(self.order.change_state('결제 대기'), False)

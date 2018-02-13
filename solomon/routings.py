@@ -6,7 +6,7 @@ from chat.consumers import ChatConsumer
 application = ProtocolTypeRouter({
     'websocket': AuthMiddlewareStack(
         URLRouter([
-            path('chat/notify/', ChatConsumer),
+            path('chat/', ChatConsumer),
         ]),
     ),
 })

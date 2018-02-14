@@ -1,5 +1,5 @@
 from django.db import models
-import json
+import ujson
 
 
 class ContractManager(models.Manager):
@@ -47,24 +47,29 @@ class Contract(models.Model):
 
     @property
     def clause(self):
-        return json.loads(self._clause)
+        return ujson.loads(self._clause)
 
     @clause.setter
     def clause(self, value):
-        self._clause = json.dumps(value)
+        self._clause = ujson.dumps(value)
 
     def add_step_clause(self, step, fee):
+        step = str(step)
+        # json.dumps will convert dictionary key to string, so that we need to save key as string
         clause = self.clause
+        if step in clause['clauses']:
+            return False
         clause['clauses'][step] = {'fee': fee, 'data': []}
         self.clause = clause
-        pass
+        self.save()
+        return True
 
     def add_clause(self, step, content):
-        self.reset_agreement()
+        step = str(step)
         clause = self.clause
         if step not in clause['clauses']:
             return False
-        clause['clauses'][step]['data'].add({'id': clause['max_id'], 'content': content})
+        clause['clauses'][step]['data'].append({'id': clause['max_id'], 'content': content})
         clause['max_id'] += 1
         self.clause = clause
         self.save()
@@ -78,12 +83,14 @@ class Contract(models.Model):
             if len(search) != 1:
                 continue
             target = search[0]
-            clause['clauses'][step]['data'].pop(clause['clauses'][step]['data'].find(target))
-        self.clause = clause
-        self.save()
-        return True
+            clause['clauses'][step]['data'].pop(clause['clauses'][step]['data'].index(target))
+            self.clause = clause
+            self.save()
+            return True
+        return False
 
     def reset_agreement(self):
         self.buyer_agreement = False
         self.seller_agreement = False
         self.save()
+        return True

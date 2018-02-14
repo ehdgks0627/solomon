@@ -5,24 +5,14 @@ import json
 
 
 class OrderManager(models.Manager):
-    def create_order(self, tags, **kwargs):
+    def create_order(self, tags=None, **kwargs):
         contract = Contract.objects.create_contract()
         contract.save()
         order = self.model(contract=contract, **kwargs)
-        order.tags = tags
+        if tags:
+            order.tags = tags
         order.save()
         return order
-
-    """
-        def __init__(self, tags=None, *args, **kwargs):
-        # TODO fix
-        # super(Order, self).__init__(*args, **kwargs)
-        # if tags:
-        #    self.tags = tags
-        #    self.save()
-
-        pass
-    """
 
 
 class Order(models.Model):

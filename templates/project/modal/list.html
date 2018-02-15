@@ -23,10 +23,14 @@
     });
   });
   function propose_project() {
-    if(!$("#project-list-group").find(".active").length) {
+    var selected_project = $("#project-list-group").find(".active");
+    if(selected_project.length != 1) {
       $(".alert").alert('close');
       $("#alert-container").append(make_alert('Please select your project.', 'alert-danger'));
+      return;
     }
+    $("#propose-project").find("input[name='project_id']").val(selected_project.attr("project_id"));
+    $("#propose-project").submit();
   }
 
   function make_alert(msg, level) {
@@ -44,7 +48,12 @@
           <div class="list-group" id="project-list-group">
           </div>
           <div class="mt-5" style="text-align: center;">
-            <button onclick="propose_project()" class="btn btn-primary">Propose Project</button>
+            <!-- TODO ajax -->
+            <form action="/order/create/" method="post" id="propose-project">{% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <input type="hidden" name="project_id" value="">
+              <button type="button" href="#" onclick="propose_project()" class="btn btn-primary">Propose Project</button>
+            </form>
           </div>
           <div id="alert-container">
 

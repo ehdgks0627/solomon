@@ -5,10 +5,16 @@ import json
 
 
 class OrderManager(models.Manager):
-    def create_order(self, tags=None, **kwargs):
+    def create_order(self, project, title=None, price=None, period=None, tags=None, **kwargs):
+        if not title:
+            title = project.title
+        if not price:
+            price = project.price
+        if not period:
+            period = project.period
         contract = Contract.objects.create_contract()
         contract.save()
-        order = self.model(contract=contract, **kwargs)
+        order = self.model(project=project, contract=contract, title=title, price=price, period=period, **kwargs)
         if tags:
             order.tags = tags
         order.save()
@@ -73,7 +79,7 @@ class Order(models.Model):
         null=False
     )
 
-    review = models.ForeignKey(
+    review = models.OneToOneField(
         'review.Review',
         related_name='%(app_label)s_%(class)s_review',
         on_delete=models.CASCADE,

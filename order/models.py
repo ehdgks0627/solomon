@@ -13,7 +13,6 @@ class OrderManager(models.Manager):
         if not period:
             period = project.period
         contract = Contract.objects.create_contract()
-        contract.save()
         order = self.model(project=project, contract=contract, title=title, price=price, period=period, **kwargs)
         if tags:
             order.tags = tags

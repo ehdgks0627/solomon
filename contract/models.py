@@ -7,7 +7,7 @@ class ContractManager(models.Manager):
         contract = self.model(**kwargs)
         if clause:
             contract.clause = clause
-            contract.save()
+        contract.save()
         return contract
 
 

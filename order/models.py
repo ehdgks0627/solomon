@@ -1,5 +1,6 @@
 from django.db import models
 from contract.models import Contract
+from review.models import Review
 import datetime
 import ujson
 
@@ -143,3 +144,9 @@ class Order(models.Model):
             self.begin_at = datetime.datetime.now()
         self.save()
         return True
+
+    def write_review(self, title, content, star, tags=None):
+        if self.review:
+            return False
+        self.review = Review.objects.create_review(title=title, content=content, star=star, tags=tags)
+        self.save()

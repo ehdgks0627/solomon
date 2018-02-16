@@ -28,7 +28,7 @@ def create_project(request):
 @require_http_methods(['GET'])
 def delete_project(request, project_id):
     project = Project.objects.get(id=project_id)
-    if project and project.owner == request.user or request.user.is_staff:
+    if project and (project.owner == request.user or request.user.is_staff):
         project.delete()
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

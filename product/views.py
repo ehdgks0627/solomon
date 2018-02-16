@@ -33,7 +33,7 @@ def create_product(request):
 def delete_product(request, product_id):
     product = Product.objects.get(id=product_id)
 
-    if product and product.owner == request.user or request.user.is_staff:
+    if product and (product.owner == request.user or request.user.is_staff):
         product.delete()
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

@@ -1,7 +1,7 @@
 from django.db import models
 from contract.models import Contract
 import datetime
-import json
+import ujson
 
 
 class OrderManager(models.Manager):
@@ -117,11 +117,11 @@ class Order(models.Model):
 
     @property
     def tags(self):
-        return json.loads(self._tags)
+        return ujson.loads(self._tags)
 
     @tags.setter
     def tags(self, value):
-        self._tags = json.dumps(value)
+        self._tags = ujson.dumps(value)
 
     begin_at = models.DateTimeField(
         blank=True,

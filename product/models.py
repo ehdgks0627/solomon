@@ -44,6 +44,14 @@ class Category:
                 categories.append(item[0])
         return categories
 
+    def get_categories(self, language):
+        categories = {}
+        for category in self.CATEGORY_CHOICES:
+            categories[category[0][language]] = []
+            for label in category[1]:
+                categories[category[0][language]].append([label[0], label[1][language]])
+        return categories
+
 
 class Product(models.Model):
     owner = models.ForeignKey(

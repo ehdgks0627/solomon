@@ -5,5 +5,5 @@ from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
-    path('test/', test_view),
+    path('<str:receiver_id>/', test_view),
 ]

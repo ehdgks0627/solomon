@@ -20,53 +20,19 @@
 <nav>
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="#">Seller</a>
+      <a class="nav-link" href="#" onclick="changeMenu('seller');">Seller</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Buyer</a>
+      <a class="nav-link" href="#" onclick="changeMenu('buyer');">Buyer</a>
     </li>
   </ul>
 </nav>
 
 <hr>
 
-<div id="buyer_menu" class="row text-center">
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Project</h4>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Order</h4>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Review</h4>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<!--./ Seller Menu -->
-
-<div id="seller_menu" class="row text-center">
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
+<div class="row text-center">
+  <div id="talentMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : inline">
+    <a href="#" onclick="showSubMenuCard('talent'); return false;" style="color: black;">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Talent</h4>
@@ -75,8 +41,8 @@
     </a>
   </div>
 
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
+  <div id="sellerOrderMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : inline">
+    <a href="#" onclick="showSubMenuCard('sellerOrder'); return false;" style="color: black;">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Order</h4>
@@ -85,8 +51,38 @@
     </a>
   </div>
 
-  <div class="col-lg-4 col-md-4 col-xs-12 my-4">
-    <a href="#" style="color: black;">
+  <div id="sellerReviewMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : inline">
+    <a href="#" onclick="showSubMenuCard('sellerReview'); return false;" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Review</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div id="projectMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : none">
+    <a href="#" onclick="showSubMenuCard('project'); return false;" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Project</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div id="buyerOrderMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : none">
+    <a href="#" onclick="showSubMenuCard('buyerOrder'); return false;" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Order</h4>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div id="buyerReviewMenu" class="col-lg-4 col-md-4 col-xs-12 my-4" style="display : none">
+    <a href="#" onclick="showSubMenuCard('buyerReview'); return false;" style="color: black;">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Review</h4>
@@ -96,103 +92,167 @@
   </div>
 </div>
 
-<!--./ Buyer Menu -->
 
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/product/detail/{{ product.id }}" style="color: black;">
-    <div class="card">
-      <img class="" src="/{{ product.img }}" alt="" height="100px" width="100px">
-      <div class="card-body" style="height: 100px">
-        <h4 class="card-title">{{ product.title }}</h4>
-        <p class="card-text">{{ product.one_line_introduce }}</p>
+
+<div id = "talentRow" class="row text-center" style="display : inline">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/product/detail/{{ product.id }}" style="color: black;">
+      <div class="card">
+        <img class="" src="/{{ product.img }}" alt="" height="100px" width="100px">
+        <div class="card-body" style="height: 100px">
+          <h4 class="card-title">{{ product.title }}</h4>
+          <p class="card-text">{{ product.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left">{{ product.like }} Like</span>
+        </div>
       </div>
-      <div class="card-footer">
-        <span class="float-left">{{ product.like }} Like</span>
-      </div>
-    </div>
-  </a>
+    </a>
+  </div>
 </div>
 
-<!--./ product view -->
+<!--./ talent view -->
 
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/project/detail/{{ project.id }}" style="color: black;">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ project.title }}</h4>
-        <p class="card-text">{{ project.one_line_introduce }}</p>
+<div id = "contractForSellerRow" class="row text-center" style="display : none">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/contract/detail/{{ contract.id }}" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ contract.order.project.title }}</h4>
+          <p class="card-text">{{ contract.order.project.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left">{{ contract.order.project.created_at }}</span>
+          <span class="float-right"><img src="{{ contract.order.project.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ contract.order.project.owner.name }}</span>
+        </div>
       </div>
-      <div class="card-footer">
-        <span class="float-left">{{ project.price }}$</span>
-        <span class="float-right"><img src="{{ project.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ project.period }}</span>
-      </div>
-    </div>
-  </a>
-</div>
-
-<!--./ project view -->
-
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/contract/detail/{{ contract.id }}" style="color: black;">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ contract.order.project.title }}</h4>
-        <p class="card-text">{{ contract.order.project.one_line_introduce }}</p>
-      </div>
-      <div class="card-footer">
-        <span class="float-left">{{ contract.order.project.created_at }}</span>
-        <span class="float-right"><img src="{{ contract.order.project.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ contract.order.project.owner.name }}</span>
-      </div>
-    </div>
+    </a>
+  </div>
 </div>
 
 <!--./ contract view for seller -->
 
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/contract/detail/{{ contract.id }}" style="color: black;">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ contract.order.project.title }}</h4>
-        <p class="card-text">{{ contract.order.project.one_line_introduce }}</p>
+<div id = "reviewForSellerRow" class="row text-center" style="display : none">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/product/detail/{{ review.product.id }}" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ review.product.title }}</h4>
+          <p class="card-text">{{ review.product.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left"><img src="{{ review.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ review.owner.name }}</span>
+          <span class="float-right">{{ review.star }} : {{ review.content }}</span>
+        </div>
       </div>
-      <div class="card-footer">
-        <span class="float-left">{{ contract.order.project.created_at }}</span>
-        <span class="float-right"><img src="{{ contract.order.product.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ contract.order.product.owner.name }}</span>
-      </div>
-    </div>
-</div>
-
-<!--./ contract view for buyer -->
-
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/product/detail/{{ review.product.id }}" style="color: black;">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ review.product.title }}</h4>
-        <p class="card-text">{{ review.product.one_line_introduce }}</p>
-      </div>
-      <div class="card-footer">
-        <span class="float-left"><img src="{{ review.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ review.owner.name }}</span>
-        <span class="float-right">{{ review.star }} : {{ review.content }}</span>
-      </div>
-    </div>
+    </a>
+  </div>
 </div>
 
 <!--./ review view for seller -->
 
-<div class="col-lg-3 col-md-6 col-xs-12 my-4">
-  <a href="/project/detail/{{ review.project.id }}" style="color: black;">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">{{ review.product.title }}</h4>
-        <p class="card-text">{{ review.product.one_line_introduce }}</p>
+<div id = "projectRow" class="row text-center" style="display : none">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/project/detail/{{ project.id }}" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ project.title }}</h4>
+          <p class="card-text">{{ project.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left">{{ project.price }}$</span>
+          <span class="float-right"><img src="{{ project.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ project.period }}</span>
+        </div>
       </div>
-      <div class="card-footer">
-        <span class="float-left"><img src="{{ review.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ review.owner.name }}</span>
-        <span class="float-right">{{ review.star }} : {{ review.content }}</span>
-      </div>
-    </div>
+    </a>
+  </div>
 </div>
+
+<!--./ project view -->
+
+<div id = "contractForBuyerRow" class="row text-center" style="display : none">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/contract/detail/{{ contract.id }}" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ contract.order.project.title }}</h4>
+          <p class="card-text">{{ contract.order.project.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left">{{ contract.order.project.created_at }}</span>
+          <span class="float-right"><img src="{{ contract.order.product.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ contract.order.product.owner.name }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!--./ contract view for buyer -->
+
+<div id = "reviewForBuyerRow" class="row text-center" style="display : none">
+  <div class="col-lg-3 col-md-6 col-xs-12 my-4">
+    <a href="/project/detail/{{ review.project.id }}" style="color: black;">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ review.product.title }}</h4>
+          <p class="card-text">{{ review.product.one_line_introduce }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="float-left"><img src="{{ review.owner.thumbnail }}" width="30px" height="30px" alt=""> {{ review.owner.name }}</span>
+          <span class="float-right">{{ review.star }} : {{ review.content }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+function changeMenu(type) {
+  if (type == 'seller') {
+    document.getElementById("talentMenu").style.display = "inline";
+    document.getElementById("sellerOrderMenu").style.display = "inline";
+    document.getElementById("sellerReviewMenu").style.display = "inline";
+    document.getElementById("projectMenu").style.display = "none";
+    document.getElementById("buyerOrderMenu").style.display = "none";
+    document.getElementById("buyerReviewMenu").style.display = "none";
+    showSubMenuCard('talent');
+  }
+  else if (type == 'buyer') {
+    document.getElementById("projectMenu").style.display = "inline";
+    document.getElementById("buyerOrderMenu").style.display = "inline";
+    document.getElementById("buyerReviewMenu").style.display = "inline";
+    document.getElementById("talentMenu").style.display = "none";
+    document.getElementById("sellerOrderMenu").style.display = "none";
+    document.getElementById("sellerReviewMenu").style.display = "none";
+    showSubMenuCard('project');
+  }
+}
+
+function hideAllMenuCard() {
+  document.getElementById("talentRow").style.display = "none";
+  document.getElementById("projectRow").style.display = "none";
+  document.getElementById("contractForBuyerRow").style.display = "none";
+  document.getElementById("contractForSellerRow").style.display = "none";
+  document.getElementById("reviewForBuyerRow").style.display = "none";
+  document.getElementById("reviewForSellerRow").style.display = "none";
+}
+
+function showSubMenuCard(type) {
+  hideAllMenuCard();
+  if (type == "talent")
+    document.getElementById("talentRow").style.display = "inline";
+  else if (type == "sellerOrder")
+    document.getElementById("contractForSellerRow").style.display = "inline";
+  else if (type == "sellerReview")
+    document.getElementById("reviewForSellerRow").style.display = "inline";
+  else if (type == "project")
+    document.getElementById("projectRow").style.display = "inline";
+  else if (type == "buyerOrder")
+    document.getElementById("contractForBuyerRow").style.display = "inline";
+  else if (type == "buyerReview")
+    document.getElementById("reviewForBuyerRow").style.display = "inline";
+}
+</script>
 
 <!--./ review view for buyer -->
 

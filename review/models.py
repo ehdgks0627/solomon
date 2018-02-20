@@ -12,6 +12,8 @@ class ReviewManager(models.Manager):
 
 
 class Review(models.Model):
+    objects = ReviewManager()
+
     title = models.CharField(
         max_length=128,
         blank=False,

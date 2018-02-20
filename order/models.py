@@ -1,7 +1,7 @@
 from django.db import models
 from contract.models import Contract
 from review.models import Review
-import datetime
+from django.utils import timezone
 import ujson
 
 
@@ -141,7 +141,7 @@ class Order(models.Model):
         self.state = self.STATE_CHOICE[state]
 
         if self.state == self.STATE_CHOICE['진행 중']:
-            self.begin_at = datetime.datetime.now()
+            self.begin_at = timezone.now()
         self.save()
         return True
 
